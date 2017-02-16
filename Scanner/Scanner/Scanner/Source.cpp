@@ -1,3 +1,5 @@
+//testing commit on laptop
+
 /*
 Initial notes:
 If we decide to read in entire words at a time we need to change chars to strings in the load code function, along with the initial vector build in the main function, in addition to changing char word to string word.
