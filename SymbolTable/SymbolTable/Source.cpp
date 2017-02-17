@@ -79,7 +79,7 @@ void add_symbol(vector<TABLE>& symbols)
 			cout << "\n--Invalid type, sending user back to main menu--\n";
 			return;
 		}
-		
+
 		if (ans_string == "ARRAY")                                                                                    //if they are making an array we'll get the type and size
 		{
 			cout << "\nEnter the type of array (char,int,float,bool,string): ";
@@ -90,7 +90,7 @@ void add_symbol(vector<TABLE>& symbols)
 				cout << "\n--Invalid type, sending user back to main menu--\n";
 				return;
 			}
-			
+
 			cout << "\nEnter the size of the array: ";
 			cin >> size;
 			if (cin.fail())
@@ -99,7 +99,7 @@ void add_symbol(vector<TABLE>& symbols)
 			}
 			new_entry.type = ans_string_array + " " + ans_string;                                                          //inputing the type in the new entry
 		}
-		
+
 		if (!(ans_string == "ARRAY"))
 		{
 			new_entry.type = ans_string;                                                          //inputing the type in the new entry
@@ -122,18 +122,18 @@ void add_symbol(vector<TABLE>& symbols)
 			/*
 			float 8 bytes
 			int 4 bytes
-            char 1 byte
+			char 1 byte
 			pointer 8 bytes
 			string 1  * characters in string + 1 for terminator, I'll mess with the logic for this one on Sunday
 			*/
-			
+
 			if (ans_string_array == "FLOAT")                                                        //memory usage determination
 			{
 				memory = memory + 8;
 				new_entry.memory = memory;
 				memory = memory + (size * 8);                                                      //assigning the memory that the next input will start from
 			}
-			
+
 			else if (ans_string_array == "INT")                                                        //memory usage determination
 			{
 				memory = memory + 4;
@@ -154,14 +154,14 @@ void add_symbol(vector<TABLE>& symbols)
 				new_entry.memory = memory;
 				memory = memory + (size * 8);                                                      //assigning the memory that the next input will start from
 			}
-			
+
 
 			/*
 			logic for if it's a string here (eventually)
 			*/
 
 
-			
+
 			new_entry.size = size;
 			new_entry.kind = ans_string;                                                                 //setting the new entry kind
 			new_entry.scope = 0;                                                                         //statement to set scope//
@@ -170,7 +170,7 @@ void add_symbol(vector<TABLE>& symbols)
 			first_time = false;                                                                          //setting this bool to false to indicate that the first entry has been made
 		}
 
-		
+
 		//everything that isn't an array for first time below this
 		else {																					  //statement to gather the kind of the new entry//
 			cout << "\nEnter the kind (var,func): ";
@@ -197,7 +197,7 @@ void add_symbol(vector<TABLE>& symbols)
 
 			else if (ans_string == "VAR")                                                                 //if to check if the kind was a function. Will force string to upper eventually, this will due for now
 			{
-				                                                                   
+
 				if (new_entry.type == "FLOAT")                                                        //memory usage determination
 				{
 					memory = memory + 8;
@@ -223,8 +223,8 @@ void add_symbol(vector<TABLE>& symbols)
 				}
 			}
 
-			
-			
+
+
 			symbols.push_back(new_entry);                                                           //pushing the new entry to the table
 
 			number_symbols++;                                                                          //counter for how many symbols have been entered
@@ -234,12 +234,12 @@ void add_symbol(vector<TABLE>& symbols)
 	}
 
 
+
+
+
+
+
 	
-	
-	
-	
-	
-	//Need array logic for these below portions//
 	//else if that runs if the entry is not the first//
 	else if (first_time == false)                                                                                      //checking if this is our first iteration
 	{
@@ -271,49 +271,173 @@ void add_symbol(vector<TABLE>& symbols)
 
 
 																	  //statement to gather the type of the new entry//
-		cout << "\nEnter the type (char,int,void,float,bool): ";
+		cout << "\nEnter the type (char,int,void,float,bool,string,array,pointer): ";
 		cin >> ans_string;                                                                      //accepting user input
 		transform(ans_string.begin(), ans_string.end(), ans_string.begin(), &::toupper);        //making the string uppercase to facilitate for easier coding
 
-		if (!(ans_string == "CHAR" || ans_string == "INT" || ans_string == "VOID" || ans_string == "FLOAT" || ans_string == "BOOL" || ans_string == "STRING")) //if statement to check if the type is allowable
+		if (!(ans_string == "CHAR" || ans_string == "INT" || ans_string == "VOID" || ans_string == "FLOAT" || ans_string == "BOOL" || ans_string == "STRING" || ans_string == "ARRAY" || ans_string == "POINTER")) //if statement to check if the type is allowable
 		{
 			cout << "\n--Invalid type, sending user back to main menu--\n";
 			return;
 		}
 
-		new_entry.type = ans_string;                                                           //setting the type of the new entry
-																							   //---------------------------------------------//
-
-																							   //statement to gather the kind of the new entry//
-		cout << "\nEnter the kind (var,func): ";
-		cin >> ans_string;                                                                     //saving use input
-		transform(ans_string.begin(), ans_string.end(), ans_string.begin(), &::toupper);       //making the string uppercase to facilitate for easier coding
-
-		if (!(ans_string == "VAR" || ans_string == "FUNC"))                                    //if statement to check if the kind is allowable
+		if (ans_string == "ARRAY")                                                                                    //if they are making an array we'll get the type and size
 		{
-			cout << "\n--Invalid kind, sending user back to main menu--\n";
-			return;
+			cout << "\nEnter the type of array (char,int,float,bool,string): ";
+			cin >> ans_string_array;
+			transform(ans_string_array.begin(), ans_string_array.end(), ans_string_array.begin(), &::toupper);       //making the string uppercase to facilitate for easier coding
+			if (!(ans_string_array == "CHAR" || ans_string_array == "INT" || ans_string_array == "FLOAT" || ans_string_array == "BOOL" || ans_string_array == "STRING")) //if statement to check if the type is allowable
+			{
+				cout << "\n--Invalid type, sending user back to main menu--\n";
+				return;
+			}
+
+			cout << "\nEnter the size of the array: ";
+			cin >> size;
+			if (cin.fail())
+			{
+				cout << "\n--Invalid size, sending user back to main menu--\n";
+			}
+			new_entry.type = ans_string_array + " " + ans_string;                                                          //inputing the type in the new entry
+		}
+		//---------------------------------------------//
+
+		if (!(ans_string == "ARRAY"))
+		{
+			new_entry.type = ans_string;                                                          //inputing the type in the new entry
 		}
 
-		new_entry.kind = ans_string;                               //saving the kind of the new entry
-																   //--------------------------------------------//
 
-																   //statement to set scope//
-		new_entry.scope = current_scope;                          //setting the scope of the new entry                
-
-		if (ans_string == "FUNC")                                 //if the new entry is a function we need to increment our scope by 1
+		if (ans_string == "ARRAY")
 		{
-			current_scope++;
+			cout << "\nEnter the kind (var): ";
+			cin >> ans_string;                                                                     //taking in the user's input
+
+			transform(ans_string.begin(), ans_string.end(), ans_string.begin(), &::toupper);       //making the string uppercase to facilitate for easier coding
+
+			if (!(ans_string == "VAR"))                                                             //if statement to check if the kind is allowable
+			{
+				cout << "\n--Invalid kind, sending user back to main menu--\n";
+				return;
+			}
+
+			/*
+			float 8 bytes
+			int 4 bytes
+			char 1 byte
+			pointer 8 bytes
+			string 1  * characters in string + 1 for terminator, I'll mess with the logic for this one on Sunday
+			*/
+
+			if (ans_string_array == "FLOAT")                                                        //memory usage determination
+			{
+				memory = memory + 8;
+				new_entry.memory = memory;
+				memory = memory + (size * 8);                                                      //assigning the memory that the next input will start from
+			}
+
+			else if (ans_string_array == "INT")                                                        //memory usage determination
+			{
+				memory = memory + 4;
+				new_entry.memory = memory;
+				memory = memory + (size * 4);                                                      //assigning the memory that the next input will start from
+			}
+
+			else if (ans_string_array == "CHAR")                                                        //memory usage determination
+			{
+				memory = memory + 1;
+				new_entry.memory = memory;
+				memory = memory + (size * 1);                                                      //assigning the memory that the next input will start from
+			}
+
+			else if (ans_string_array == "POINTER")                                                        //memory usage determination
+			{
+				memory = memory + 8;
+				new_entry.memory = memory;
+				memory = memory + (size * 8);                                                      //assigning the memory that the next input will start from
+			}
+
+
+			/*
+			logic for if it's a string here (eventually)
+			*/
+
+
+
+			new_entry.size = size;
+			new_entry.kind = ans_string;                                                                 //setting the new entry kind
+			new_entry.scope = current_scope;                                                                         //statement to set scope//
+			symbols.push_back(new_entry);                                                                //pushing the new entry to the table
+			number_symbols++;                                                                            //counter for how many symbols have been entered
+			first_time = false;                                                                          //setting this bool to false to indicate that the first entry has been made
 		}
-		//---------------------//
 
 
-		symbols.push_back(new_entry);                            //placing the new symbol into the table
 
-		number_symbols++;                                        //counter for how many symbols have been entered
+		else
+		{
+			cout << "\nEnter the kind (var,func): ";
+			cin >> ans_string;                                                                     //saving use input
+			transform(ans_string.begin(), ans_string.end(), ans_string.begin(), &::toupper);       //making the string uppercase to facilitate for easier coding
+
+			if (!(ans_string == "VAR" || ans_string == "FUNC"))                                    //if statement to check if the kind is allowable
+			{
+				cout << "\n--Invalid kind, sending user back to main menu--\n";
+				return;
+			}
+
+			new_entry.kind = ans_string;                               //saving the kind of the new entry
+																	   //--------------------------------------------//
+
+																	   //statement to set scope//
+			new_entry.scope = current_scope;                          //setting the scope of the new entry                
+
+			if (ans_string == "FUNC")                                 //if the new entry is a function we need to increment our scope by 1
+			{
+				current_scope++;
+				new_entry.memory = memory;
+				memory = 0;                                           //resetting memory to 0 since we are moving to a different scope, not sure if this is correct, need to check w/ the other guys
+			}
+
+			else if (ans_string == "VAR")                                                                 //if to check if the kind was a function. Will force string to upper eventually, this will due for now
+			{
+
+				if (new_entry.type == "FLOAT")                                                        //memory usage determination
+				{
+					memory = memory + 8;
+					new_entry.memory = memory;
+				}
+
+				else if (new_entry.type == "INT")                                                        //memory usage determination
+				{
+					memory = memory + 4;
+					new_entry.memory = memory;
+				}
+
+				else if (new_entry.type == "CHAR")                                                        //memory usage determination
+				{
+					memory = memory + 1;
+					new_entry.memory = memory;
+				}
+
+				else if (new_entry.type == "POINTER")                                                        //memory usage determination
+				{
+					memory = memory + 8;
+					new_entry.memory = memory;
+				}
+			}
+
+
+			//---------------------//
+
+
+			symbols.push_back(new_entry);                            //placing the new symbol into the table
+
+			number_symbols++;                                        //counter for how many symbols have been entered
+
+		}
 		cout << "\n--Symbol has been inserted into the table--\n";
 	}
-
 }
 //----------------------------//
 
@@ -338,7 +462,7 @@ void print_symbol(vector<TABLE>& symbols)
 			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).scope;         //print ith position scope
 			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).kind;    //print ith position kind
 			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).memory;    //print ith position memory
-			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).size;    //print ith position size
+			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).size<<"\n";    //print ith position size
 		}
 		cout << "\n____________________________________________________________________________\n";
 	}
@@ -368,20 +492,22 @@ void print_scope(vector<TABLE>& symbols)
 		current_scope = symbols.back().scope;                                                          //saving our current scope
 	}
 
-	cout << "|   NAME   |   TYPE   |   SCOPE   |    KIND    |\n";
-	cout << "________________________________________________\n";
+	cout << "|   NAME   |   TYPE   |   SCOPE   |    KIND    |    MEMORY    |    SIZE    |\n";
+	cout << "____________________________________________________________________________\n";
 
 	for (int i = 0; i < symbols.size(); i++)                                                           //incrementing through our table
 	{
 		if (symbols.at(i).scope == current_scope)                                                      //if the ith position in the vector matches the current scope, do this
 		{
-			cout << left << " " << setw(nameWidth) << setfill(seperator) << symbols.at(i).name;        //print ith position name         
-			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).type;               //print ith position type
-			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).scope;              //print ith position scope
-			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).kind << "\n";       //print ith position kind
+			cout << left << " " << setw(nameWidth) << setfill(seperator) << symbols.at(i).name;   //print ith position name
+			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).type;          //print ith position type
+			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).scope;         //print ith position scope
+			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).kind;    //print ith position kind
+			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).memory;    //print ith position memory
+			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).size << "\n";    //print ith position size
 		}
 	}
-	cout << "________________________________________________\n";
+	cout << "____________________________________________________________________________\n";
 }
 //----------------------------------------------------------------------//
 
@@ -501,19 +627,21 @@ void look_at_attrib(vector<TABLE>& symbols)
 
 	cout << "\nEnter a symbol to search for in the table: ";
 	cin >> ans;
-	cout << "|   NAME   |   TYPE   |   SCOPE   |    KIND    |\n";
-	cout << "________________________________________________\n";
+	cout << "|   NAME   |   TYPE   |   SCOPE   |    KIND    |    MEMORY    |    SIZE    |\n";
+	cout << "____________________________________________________________________________\n";
 	for (int i = 0; i < symbols.size(); i++)                                                         //iterate through the symbols in our table
 	{
 		if (symbols.at(i).name == ans)                                                               //if statement to check if the name matches the user's input
 		{
-			cout << left << " " << setw(nameWidth) << setfill(seperator) << symbols.at(i).name;      //print current index name
-			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).type;             //print current index type
-			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).scope;            //print current index scope
-			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).kind << "\n";     //print current index kind
+			cout << left << " " << setw(nameWidth) << setfill(seperator) << symbols.at(i).name;   //print ith position name
+			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).type;          //print ith position type
+			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).scope;         //print ith position scope
+			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).kind;    //print ith position kind
+			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).memory;    //print ith position memory
+			cout << left << setw(nameWidth) << setfill(seperator) << symbols.at(i).size << "\n";    //print ith position size
 		}
 	}
-	cout << "________________________________________________\n";
+	cout << "____________________________________________________________________________\n";
 }
 //----------------------------------------------------------------------//
 
