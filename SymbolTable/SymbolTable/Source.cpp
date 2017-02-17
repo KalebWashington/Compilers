@@ -97,10 +97,14 @@ void add_symbol(vector<TABLE>& symbols)
 			{
 				cout << "\n--Invalid size, sending user back to main menu--\n";
 			}
-			
+			new_entry.type = ans_string_array + " " + ans_string;                                                          //inputing the type in the new entry
 		}
 		
-		new_entry.type = ans_string_array + " " + ans_string;                                                          //inputing the type in the new entry
+		if (!(ans_string == "ARRAY"))
+		{
+			new_entry.type = ans_string;                                                          //inputing the type in the new entry
+		}
+
 
 		if (ans_string == "ARRAY")
 		{
@@ -194,25 +198,25 @@ void add_symbol(vector<TABLE>& symbols)
 			else if (ans_string == "VAR")                                                                 //if to check if the kind was a function. Will force string to upper eventually, this will due for now
 			{
 				                                                                   
-				if (ans_string_array == "FLOAT")                                                        //memory usage determination
+				if (new_entry.type == "FLOAT")                                                        //memory usage determination
 				{
 					memory = memory + 8;
 					new_entry.memory = memory;
 				}
 
-				else if (ans_string_array == "INT")                                                        //memory usage determination
+				else if (new_entry.type == "INT")                                                        //memory usage determination
 				{
 					memory = memory + 4;
 					new_entry.memory = memory;
 				}
 
-				else if (ans_string_array == "CHAR")                                                        //memory usage determination
+				else if (new_entry.type == "CHAR")                                                        //memory usage determination
 				{
 					memory = memory + 1;
 					new_entry.memory = memory;
 				}
 
-				else if (ans_string_array == "POINTER")                                                        //memory usage determination
+				else if (new_entry.type == "POINTER")                                                        //memory usage determination
 				{
 					memory = memory + 8;
 					new_entry.memory = memory;
