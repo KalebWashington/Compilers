@@ -235,7 +235,7 @@ void add_symbol(vector<TABLE>& symbols)
 	
 	
 	
-	
+	//Need array logic for these below portions//
 	//else if that runs if the entry is not the first//
 	else if (first_time == false)                                                                                      //checking if this is our first iteration
 	{
