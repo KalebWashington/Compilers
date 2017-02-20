@@ -404,9 +404,9 @@ void build_tokens(vector<char> code, vector<TOKENS> tokens)
 			cout << "madeit:1\n";
 			counter++;
 			advance(list, 1);
-			while (code.size() > counter)
+			while (code.size() > counter && isdigit(*list))
 			{
-				if (isdigit(code[0]))
+				if (isdigit(*list))
 				{
 					cout << "madeit:2\n";
 					counter++;
