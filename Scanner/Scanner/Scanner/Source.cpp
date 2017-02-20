@@ -25,9 +25,9 @@ struct TOKENS
 /*build tokens notes: I believe we should keep track of how many characters we use to build a token, then delete those elements from the vector and recursively call the build function again with the new size. IE)
 
 for loop to build the first token it comes up with
-  push that token into the tokens vector
-   call function to delete the elements used to make the token from the vector
-      call build function again
+push that token into the tokens vector
+call function to delete the elements used to make the token from the vector
+call build function again
 */
 
 
@@ -139,7 +139,7 @@ void build_tokens(vector<char> code, vector<TOKENS> tokens)
 	auto list = code.begin();                                                  //iterator
 	TOKENS new_entry;
 
-	
+
 	//begin looking through the characters in the vector//
 	if (code.size() > 0)
 	{
@@ -183,7 +183,7 @@ void build_tokens(vector<char> code, vector<TOKENS> tokens)
 		//-----------------//
 
 
-	//left/right parenth. token//
+		//left/right parenth. token//
 		else if (code[0] == '#')
 		{
 			counter++;
@@ -387,6 +387,7 @@ void build_tokens(vector<char> code, vector<TOKENS> tokens)
 					counter++;
 					advance(list, 1);
 				}
+				
 				cout << "\nStringLitToken found\n";
 				new_entry.token_name = "StringLitToken";            //printing for testing purposes
 				tokens.push_back(new_entry);
@@ -396,58 +397,38 @@ void build_tokens(vector<char> code, vector<TOKENS> tokens)
 		//-----------------//
 
 
-		
+
 		//IntToken//
 		else if (isdigit(code[0]))
 		{
+			cout << "madeit:1\n";
 			counter++;
-			
-			
-			while (isdigit(*list) && code.size() > counter)
+			advance(list, 1);
+			while (code.size() > counter)
 			{
-				counter++;
-				advance(list, 1);
-			}
-			
-			if (!(*list == 'E' || *list == 'e' || *list == '-' || *list == '.'))      //int portion
-			{
-				cout << "\IntToken found\n";
-				new_entry.token_name = "IntToken";            //printing for testing purposes
-				tokens.push_back(new_entry);
-				elements_delete(code, tokens, counter);
-			}
-			
-			else if (*list == 'E' || *list == 'e' || *list == '-' || *list == '.')   //real portion
-			{
-				//counter++;
-				//advance(list, 1);
-				if (*list == '.')
+				if (isdigit(code[0]))
 				{
-					//counter++;
+					cout << "madeit:2\n";
+					counter++;
 					advance(list, 1);
-					while (isdigit(*list) && code.size() > counter)
-					{
-						counter++;
-						advance(list, 1);
-					}
-
-					cout << "\nRealLitToken found\n";
-					new_entry.token_name = "RealLitToken";            //printing for testing purposes
-					tokens.push_back(new_entry);
-					elements_delete(code, tokens, counter);
 				}
-
-			}
+				//counter++;
 				
-			
+			}
+			cout << "madeit:3\n";
+			cout << "\nIntToken found\n";
+			new_entry.token_name = "IntToken";            //printing for testing purposes
+			tokens.push_back(new_entry);
+			elements_delete(code, tokens, counter);
+
 		}
 		//-----------------//
-//END GRAPH 2//
+		//END GRAPH 2//
 
 
 
-//GRAPH 3 STARTS//
-//True/False Token//
+		//GRAPH 3 STARTS//
+		//True/False Token//
 		else if (code[0] == '^')
 		{
 			counter++;
@@ -480,7 +461,7 @@ void build_tokens(vector<char> code, vector<TOKENS> tokens)
 
 
 
-		
+
 
 		//Division Token//
 		else if (code[0] == '_')
@@ -504,8 +485,8 @@ void build_tokens(vector<char> code, vector<TOKENS> tokens)
 
 		//--------------------//
 
-		
-		
+
+
 		//EOL/RBLOCK Token//
 		else if (code[0] == '|')
 		{
@@ -1001,7 +982,7 @@ void build_tokens(vector<char> code, vector<TOKENS> tokens)
 		{
 			counter++;
 			advance(list, 1);
-			if (*list == '0')
+			if (*list == 'O')
 			{
 				counter++;
 				cout << "\nDerefToken found\n";
@@ -1059,7 +1040,7 @@ void build_tokens(vector<char> code, vector<TOKENS> tokens)
 
 		//Graph 5 ends//
 
-	
+
 
 
 
