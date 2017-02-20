@@ -1,4 +1,4 @@
 ﻿  Source.cpp
-c:\users\alan\source\repos\compilers\scanner\scanner\scanner\source.cpp(74): warning C4551: function call missing argument list
-c:\users\alan\source\repos\compilers\scanner\scanner\scanner\source.cpp(138): warning C4101: 'test': unreferenced local variable
+c:\users\alan\source\repos\compilers\scanner\scanner\scanner\source.cpp(76): warning C4551: function call missing argument list
+c:\users\alan\source\repos\compilers\scanner\scanner\scanner\source.cpp(143): warning C4101: 'test': unreferenced local variable
   Scanner.vcxproj -> C:\Users\Alan\Source\Repos\Compilers\Scanner\Scanner\x64\Debug\Scanner.exe

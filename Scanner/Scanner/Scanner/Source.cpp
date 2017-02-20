@@ -14,6 +14,7 @@ I'm not sure which will be the best approach as of now.
 #include <ctype.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <algorithm>
 
 using namespace std;
 
@@ -68,12 +69,16 @@ int main()
 void elements_delete(vector<char>code, vector<TOKENS> tokens, int counter)
 {
 	code.erase(code.begin(), code.begin() + counter);
-	if (code.size() == 0)
+	//auto it = std::adjacent_find(code.begin(), code.end());
+	if (code.size()==0)
 	{
 		cin.get();
 		exit;
 	}
-	build_tokens(code, tokens);
+	
+	
+		build_tokens(code, tokens);
+	
 }
 
 //LOAD FUNCTION
@@ -397,25 +402,25 @@ void build_tokens(vector<char> code, vector<TOKENS> tokens)
 		//-----------------//
 
 
-
+		/*THIS ONE IS WORKING FOR SIMPLE INTS
 		//IntToken//
 		else if (isdigit(code[0]))
 		{
-			cout << "madeit:1\n";
+			
 			counter++;
 			advance(list, 1);
 			while (code.size() > counter && isdigit(*list))
 			{
 				if (isdigit(*list))
 				{
-					cout << "madeit:2\n";
+					
 					counter++;
 					advance(list, 1);
 				}
-				//counter++;
+				
 				
 			}
-			cout << "madeit:3\n";
+			
 			cout << "\nIntToken found\n";
 			new_entry.token_name = "IntToken";            //printing for testing purposes
 			tokens.push_back(new_entry);
@@ -423,6 +428,38 @@ void build_tokens(vector<char> code, vector<TOKENS> tokens)
 
 		}
 		//-----------------//
+		*/
+		
+
+
+		//IntToken TESTING---going to treat vector code as an array and see if there's any progress//
+		else if (isdigit(code[0]))
+		{
+
+			int i = 0;	
+			
+			if (code.size() == 1)
+			{
+				cin.get();
+				cout << "\ncounter: " << counter << "\n";
+				cout << "\nIntToken found\n";
+				new_entry.token_name = "IntToken";            //printing for testing purposes
+				tokens.push_back(new_entry);
+				elements_delete(code, tokens, 1);
+			}
+			
+			
+
+				
+			
+
+		}
+		//-----------------//
+
+
+		
+		
+
 		//END GRAPH 2//
 
 
