@@ -1,6 +1,3 @@
 ﻿  Source.cpp
-c:\users\bruce wayne\dropbox\private files\csi465_compilerdesign\github\compilers\scanner\scanner\scanner\source.cpp(74): warning C4551: function call missing argument list
-c:\users\bruce wayne\dropbox\private files\csi465_compilerdesign\github\compilers\scanner\scanner\scanner\source.cpp(83): warning C4101: 'word': unreferenced local variable
-c:\users\bruce wayne\dropbox\private files\csi465_compilerdesign\github\compilers\scanner\scanner\scanner\source.cpp(159): warning C4101: 'test': unreferenced local variable
-  Scanner.vcxproj -> C:\Users\Bruce Wayne\Dropbox\Private files\CSI465_CompilerDesign\Github\Compilers\Scanner\Scanner\x64\Debug\Scanner.exe
-  Scanner.vcxproj -> C:\Users\Bruce Wayne\Dropbox\Private files\CSI465_CompilerDesign\Github\Compilers\Scanner\Scanner\x64\Debug\Scanner.pdb (Full PDB)
+c:\users\alan\source\repos\compilers2\scanner_ver2\scanner\scanner\source.cpp(63): warning C4551: function call missing argument list
+  Scanner.vcxproj -> C:\Users\Alan\Source\Repos\Compilers2\Scanner_ver2\Scanner\x64\Debug\Scanner.exe
