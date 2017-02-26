@@ -1,0 +1,39 @@
+Poodle @==@ walk 
+SQUIRREL
+
+  Poodle x /| 5 :: y /| 20 :: t /| 0!
+  Poodle z /| 10 :: b!
+  Corgi r /| 23.4 :: a!
+  
+  Rollover Poodle i From 1 To 10 SQUIRREL
+  
+    Sniff @= i <> y =@ SQUIRREL
+    
+    t /| t # @= y VV i =@!
+    
+    Nevermind...
+    
+    Sneeze SQUIRREL
+    
+    t /| t # @= i <3 y =@!
+    
+    Nevermind...
+  Nevermind...
+  
+  PANT input and output real number
+  
+  FeedCorgi a!
+  SpeakCorgi r!
+  
+  PANT input and output int number
+  
+  FeedPoodle b!
+  SpeakPoodle b!
+
+Nevermind...
+
+
+
+
+
+
