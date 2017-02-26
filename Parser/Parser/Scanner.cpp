@@ -4,7 +4,6 @@ PROGRAM: Scanner
 CLASS: CSI465-01SC
 Professor: Dr. Pokorny
 DATE CODED: 2 / 20 / 2017
-trsdt
 ------------------------------------------------------------------------------
 USE: This program will serve as the scanner portion of our compiler.
 
