@@ -15,7 +15,7 @@ Aside from that issue we were able to produce a scanner that will hopefully
 play nice with the other components of the compiler.
 -----------------------------------------------------------------------------
 */
-#ifndef Scanner_H_INCLUDED
+#ifndef ScannerH_INCLUDED
 #define Scanner_H_INCLUDED
 
 
@@ -32,7 +32,7 @@ using namespace std;
 
 class Scanner
 {
-	public:
+public:
 	struct TOKENS                                                                         //TOKENS struct; used to create a vector of this type that will hold the tokens generated.
 	{
 		string token_name;                                                                //string to hold the name of the generated token

@@ -1,4 +1,4 @@
-#ifndef Symbolr_H_INCLUDED
+#ifndef Symbol_H_INCLUDED
 #define Symbol_H_INCLUDED
 
 //INCLUDES//
@@ -18,7 +18,7 @@ class Symbol
 {
 
 public:
-	
+
 	//TABLE STRUCTURE//
 	struct TABLE
 	{

@@ -1,3 +1,6 @@
+/*
+
+
 #include "Symbol.h" //including SymbolTable functions
 #include "Scanner.h" //including Scanner functions
 
@@ -19,15 +22,25 @@
 int main()
 {
 	
-	Symbol test;
+	Symbol symbols;
 	
 	vector<Symbol::TABLE> symbol_table;
 
-	test.add_symbol(symbol_table);
-	test.check_id_table(symbol_table);
+	symbols.add_symbol(symbol_table);
+	symbols.add_symbol(symbol_table);
+	symbols.add_symbol(symbol_table);
 	
+	
+	cout << symbol_table.at(0).name;
+	cout << symbol_table.at(1).name;
+	cout << symbol_table.at(2).name;
+
+
+
 	system("pause");
 
 
 	return 0;
 }
+
+*/
