@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "Scanner.h" //including Scanner functions
+#include "Symbol.h"  //Symbol functions
 //using namespace std;
 
 
@@ -16,12 +17,14 @@ struct TOKENS                                                                   
 	string token_name;                                                                //string to hold the name of the generated token
 };
 
-//VODE VECTOR DELETE FUNCTION//
-void Scanner::elements_delete(vector<char>code, vector<TOKENS> tokens, int counter)           //accepting code and tokens vectors along with the count of how many characters composed the token
+//VOID VECTOR DELETE FUNCTION//
+void Scanner::elements_delete(vector<char>code, vector<TOKENS>& tokens, int counter)           //accepting code and tokens vectors along with the count of how many characters composed the token
 {
 	code.erase(code.begin(), code.begin() + counter);                                //removing n amount of elements from the code vector; dependent on the counter length
 	if (code.size() == 0)                                                            //if we've reached the end of the vector exit
 	{
+		
+
 		exit;
 	}
 	build_tokens(code, tokens);                                                     //if we have more characters to process call build function with new code/tokens vector
@@ -29,7 +32,7 @@ void Scanner::elements_delete(vector<char>code, vector<TOKENS> tokens, int count
 //-------------------------//
 
 //LOAD FUNCTION
-void Scanner::load_code(vector<char> code, vector<TOKENS> tokens)
+void Scanner::load_code(vector<char> code, vector<TOKENS>& tokens)
 {
 	int count = 0;                                                                  //counter to assist in reading from the file
 	char ch;                                                                        //character to temporarily hold the character retrieved from the code.txt file
@@ -73,7 +76,7 @@ void Scanner::load_code(vector<char> code, vector<TOKENS> tokens)
 
 
 //PRINT FUNCTION//
-void Scanner::print_tokens(vector<TOKENS> tokens)                                         //printing our list of tokens. This will be replaced by a function the passes said tokens to the other components
+void Scanner::print_tokens(vector<TOKENS>& tokens)                                         //printing our list of tokens. This will be replaced by a function the passes said tokens to the other components
 {
 	cout << "\nGENERATED TOKENS\n";
 	cout << "__________________________________________________________________\n\n";
@@ -103,7 +106,7 @@ elements_delete(code, tokens, counter);
 
 
 //TOKEN BUILDER FUNCTION//
-void Scanner::build_tokens(vector<char> code, vector<TOKENS> tokens)                    //accepting code and token vectors for iteration and inserting
+void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)                    //accepting code and token vectors for iteration and inserting
 {
 	int counter = 0;                                                           //counter to count how far into the code vector we go before generating a token
 	static int linecounter = 1;                                                //used to print what line an error was generated on   
@@ -1099,15 +1102,26 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS> tokens)            
 		}
 		//-------------------//
 
-		//ID Token//
+		//ID Token//                //need to push the values of the name into a vector so that those can be pushed into the ST later
 		else if ((code[0] > 'a') && (code[0] < 'z'))                  //if statements to determine what tokens, if any, exist
 		{
+			string token_name;
+			//token_name.append(code[0]);   //how to append char to string
 			counter++;
-			advance(list, 1);										//advance in the list by 1 
+			while ((*list > 'a') && (*list < 'z'))
+			{
+				counter++;
+				advance(list, 1);
+			}
+													 
 			new_entry.token_name = "ID_Token";
 			tokens.push_back(new_entry);							//push the generated token into the tokens vector
 			elements_delete(code, tokens, counter);					//call delete function to remove the characters that consituted the token    
 		}
+	
+		
+		
+		
 		//------------//
 
 
@@ -1129,6 +1143,23 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS> tokens)            
 		print_tokens(tokens);                                    //send the tokens list to the print function
 	}
 }
+
+
+//INSERT INTO SYMBOL TABLE//
+
+void Scanner::insert_symbol_table(vector<TOKENS>& tokens)
+{
+
+	for (int i = 0; i < tokens.size(); i++)
+	{
+		
+	}
+
+
+
+}
+
+
 
 //INITIAL FUNCTION//
 void Scanner::initial()

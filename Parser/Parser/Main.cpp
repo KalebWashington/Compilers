@@ -29,15 +29,19 @@ int main()
 	vector<Scanner::TOKENS> tokens;                 
 
 	input_code.load_code(working_code, tokens);
+	input_code.insert_symbol_table(tokens);
 
-	symbols.add_symbol(symbol_table);
-	symbols.add_symbol(symbol_table);
-	symbols.add_symbol(symbol_table);
 	
 	
-	cout << symbol_table.at(0).name;
-	cout << symbol_table.at(1).name;
-	cout << symbol_table.at(2).name;
+	
+	
+	
+	//testing
+	
+	//symbols.add_symbol(symbol_table);
+	
+	
+	//symbols.print_scope(symbol_table);
 	
 
 
