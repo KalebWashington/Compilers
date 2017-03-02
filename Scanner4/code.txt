@@ -1,0 +1,20 @@
+/@
+J. Robillard, C. Suggs, A. Thomas, J. Vasseur, K. Washington
+@/
+
+
+PLAY #L##R#NFL_CHAN CHAINS
+%--|
+ 
+  CLEATS grade ^ invalid_grade  |P
+@Start of the While
+  CHL %--|
+    PUNT [Enter grade: ]|P
+    PR grade |P
+    PUNT[You entered: ]  grade  [[\M]] |P
+
+
+  |--% REV #L# grade =* [invalid_grade]#R#|P  
+     
+@Switch, Check Grade
+   MOTION#L#
