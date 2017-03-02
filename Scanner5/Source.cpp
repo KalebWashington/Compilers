@@ -6,7 +6,20 @@ Professor: Dr. Pokorny
 DATE CODED: 2 / 20 / 2017
 ------------------------------------------------------------------------------
 USE: This program will serve as the scanner portion of our compiler.
-NOTES: We had quite a few issues implementing RealLitTokens. This version is
+
+NOTES: 
+
+3/1
+We ran into some issues with stack overflow errors. After some reading we discovered
+that the IDE limits memory use when in 'debug' mode, we remedied this error by switching to
+'release' mode. Those who run this will have to ensure they also run the program
+in release mode in order for the program to function correctly.
+
+There were also some typos in the programs we submitted, which resulted in the scanner
+to have additional issues. Those typos have also been corrected.
+
+2/20
+We had quite a few issues implementing RealLitTokens. This version is
 finicky when dealing with real numbers, however, we hope to remedy this issue
 as we move forward and begin wrapping up the compiler, as we are aware this
 will reduce the capability of what the compiler is able to achieve.
