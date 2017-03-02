@@ -1,3 +1,6 @@
+/*
+Scanner.cpp
+*/
 
 #include <iostream>
 #include <vector>
@@ -7,27 +10,26 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "Scanner.h" //including Scanner functions
-#include "Symbol.h"  //Symbol functions
-//using namespace std;
+#include "Scanner.h"
+#include "Symbol.h"
+#include "Parser.h"
 
-
-struct TOKENS                                                                         //TOKENS struct; used to create a vector of this type that will hold the tokens generated.
+struct TOKENS
 {
-	string token_name;                                                                //string to hold the name of the generated token
+	string token_name;
 };
 
-//VOID VECTOR DELETE FUNCTION//
+
+
+//VODE VECTOR DELETE FUNCTION//
 void Scanner::elements_delete(vector<char>code, vector<TOKENS>& tokens, int counter)           //accepting code and tokens vectors along with the count of how many characters composed the token
 {
 	code.erase(code.begin(), code.begin() + counter);                                //removing n amount of elements from the code vector; dependent on the counter length
 	if (code.size() == 0)                                                            //if we've reached the end of the vector exit
 	{
-		
-
 		exit;
 	}
-	build_tokens(code, tokens);                                                     //if we have more characters to process call build function with new code/tokens vector
+	build_tokens(code,tokens);                                                     //if we have more characters to process call build function with new code/tokens vector
 }
 //-------------------------//
 
@@ -54,55 +56,10 @@ void Scanner::load_code(vector<char> code, vector<TOKENS>& tokens)
 		ch = file.peek();                                                          //looking at the next char in the file
 	}
 
-
-
-	/* loop to print through the retrieved characters, was used for testing; will be removed in final version once we get everything in an acceptable working order
-
-	cout << "The gathered data is: \n";
-
-	for (int i = 0; i < code.size(); i++)
-	{
-	cout << code[i];
-	}
-	cout << "\n\nTest to see if we are getting all chars: " << count;
-	cin.get();
-	*/
-
 	file.close();                                                                 //close code.txt file
-	build_tokens(code, tokens);                                                   //sending our vectors to the build function to begin the token generation process
+	build_tokens(code,tokens);                                                   //sending our vectors to the build function to begin the token generation process
 }
 //----------------------------------------//
-
-
-
-//PRINT FUNCTION//
-void Scanner::print_tokens(vector<TOKENS>& tokens)                                         //printing our list of tokens. This will be replaced by a function the passes said tokens to the other components
-{
-	cout << "\nGENERATED TOKENS\n";
-	cout << "__________________________________________________________________\n\n";
-	for (int i = 0; i < tokens.size(); i++)                                      //iterating through the tokens vector
-	{
-		cout << tokens.at(i).token_name << " ";                                  //print contents at the index
-	}
-	cout << "\n__________________________________________________________________\n";
-
-	cout << "\n--PRESS ENTER TO EXIT--\n";
-
-	cin.get();                                                                   //pausing for the user
-}
-//----------------------------------------//
-
-/*
-void errors(vector<char> code, int counter, &int linecounter)
-{
-counter++;
-advance(list, 1);
-cout << "\nErrorToken found on line: " << linecounter << "\n";
-new_entry.token_name = "ErrorToken";
-tokens.push_back(new_entry);
-elements_delete(code, tokens, counter);
-}
-*/
 
 
 //TOKEN BUILDER FUNCTION//
@@ -111,7 +68,6 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 	int counter = 0;                                                           //counter to count how far into the code vector we go before generating a token
 	static int linecounter = 1;                                                //used to print what line an error was generated on   
 	auto list = code.begin();                                                  //iterator to be used for looking through the code vector
-	TOKENS new_entry;                                                          //creating variable of type TOKENS that will hold our generated token
 
 
 
@@ -126,25 +82,24 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 			if (*list == '-')                                                //if statements to determine what tokens, if any, exist
 			{
 				counter++;
-				new_entry.token_name = "AssignToken";
-				tokens.push_back(new_entry);                                 //push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);                      //call delete function to remove the characters that consituted the token    
+				advance(list, 1);
+				cout << "\nAssignToken";
+				elements_delete(code,tokens,counter);                      //call delete function to remove the characters that consituted the token    
 
 			}
 			else if (*list == ')')
 			{
 				counter++;
-				new_entry.token_name = "DecrToken";
-				tokens.push_back(new_entry);								//push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);						//call delete function to remove the characters that consituted the token    
+				cout << "\nDecrToken";
+				elements_delete(code, tokens, counter);                      //call delete function to remove the characters that consituted the token    
+																			 //call delete function to remove the characters that consituted the token    
 
 			}
 			else if (*list == '(')
 			{
 				counter++;
-				new_entry.token_name = "IncrToken";
-				tokens.push_back(new_entry);								//push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);						//call delete function to remove the characters that consituted the token    
+				cout << "\nIncrToken";
+				elements_delete(code, tokens, counter);                      //call delete function to remove the characters that consituted the token    
 
 			}
 			else
@@ -152,9 +107,7 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 				counter++;
 				advance(list, 1);                                                           //advance in the list by 1 
 				cout << "\nErrorToken found on line: " << linecounter << "\n";
-				new_entry.token_name = "ErrorToken";
-				tokens.push_back(new_entry);								//push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);						//call delete function to remove the characters that consituted the token    
+				elements_delete(code, tokens, counter);                      //call delete function to remove the characters that consituted the token    
 			}
 		}
 		//-----------------//
@@ -172,18 +125,15 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 				if (*list == '#')                                                       //if statements to determine what tokens, if any, exist                 
 				{
 					counter++;
-					new_entry.token_name = "LParenToken";
-					tokens.push_back(new_entry);										//push the generated token into the tokens vector
-					elements_delete(code, tokens, counter);								//call delete function to remove the characters that consituted the token    
+					cout << "\nLParenToken";
+					elements_delete(code, tokens, counter);                      //call delete function to remove the characters that consituted the token    
 				}
 				else
 				{
 					counter++;
 					advance(list, 1);                                                 //advance in the list by 1 
 					cout << "\nErrorToken found on line: " << linecounter << "\n";
-					new_entry.token_name = "ErrorToken";
-					tokens.push_back(new_entry);									//push the generated token into the tokens vector
-					elements_delete(code, tokens, counter);							//call delete function to remove the characters that consituted the token    
+					elements_delete(code, tokens, counter);                     //call delete function to remove the characters that consituted the token    
 				}
 
 			}
@@ -194,18 +144,16 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 				if (*list == '#')
 				{
 					counter++;
-					new_entry.token_name = "RParenToken";
-					tokens.push_back(new_entry);									//push the generated token into the tokens vector
-					elements_delete(code, tokens, counter);							//call delete function to remove the characters that consituted the token    
+					advance(list, 1);
+					cout << "\nRParenToken";
+					elements_delete(code, tokens, counter);
 				}
 				else
 				{
 					counter++;
 					advance(list, 1);                                               //advance in the list by 1 
 					cout << "\nErrorToken found on line: " << linecounter << "\n";
-					new_entry.token_name = "ErrorToken";
-					tokens.push_back(new_entry);									//push the generated token into the tokens vector
-					elements_delete(code, tokens, counter);							//call delete function to remove the characters that consituted the token    
+					elements_delete(code, tokens, counter);
 				}
 			}
 			else
@@ -213,9 +161,7 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 				counter++;
 				advance(list, 1);                                                    //advance in the list by 1 
 				cout << "\nErrorToken found on line: " << linecounter << "\n";
-				new_entry.token_name = "ErrorToken";
-				tokens.push_back(new_entry);										//push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);								//call delete function to remove the characters that consituted the token    
+				elements_delete(code, tokens, counter);
 			}
 		}
 		//-----------------//
@@ -225,9 +171,8 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 		else if (code[0] == ')')                                                             //if statements to determine what tokens, if any, exist
 		{
 			counter++;
-			new_entry.token_name = "SubToken";
-			tokens.push_back(new_entry);													//push the generated token into the tokens vector
-			elements_delete(code, tokens, counter);											//call delete function to remove the characters that consituted the token    
+			cout << "\nSubToken";
+			elements_delete(code, tokens, counter);
 		}
 		//-----------------//
 
@@ -240,18 +185,15 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 			if (*list == 'N')
 			{
 				counter++;
-				new_entry.token_name = "AndToken";
-				tokens.push_back(new_entry);											//push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);									//call delete function to remove the characters that consituted the token    
+				cout << "\nAndToken";
+				elements_delete(code, tokens, counter);
 			}
 			else
 			{
 				counter++;
 				advance(list, 1);                                                       //advance in the list by 1 
 				cout << "\nErrorToken found on line: " << linecounter << "\n";
-				new_entry.token_name = "ErrorToken";
-				tokens.push_back(new_entry);										//push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);								//call delete function to remove the characters that consituted the token    
+				elements_delete(code, tokens, counter);
 			}
 
 		}
@@ -265,18 +207,15 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 			if (*list == '*')
 			{
 				counter++;
-				new_entry.token_name = "NegateToken";
-				tokens.push_back(new_entry);									//push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);							//call delete function to remove the characters that consituted the token    
+				cout << "\nNegateToken";
+				elements_delete(code, tokens, counter);
 			}
 			else
 			{
 				counter++;
 				advance(list, 1);                                               //advance in the list by 1 
 				cout << "\nErrorToken found on line: " << linecounter << "\n";
-				new_entry.token_name = "ErrorToken";
-				tokens.push_back(new_entry);									//push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);							//call delete function to remove the characters that consituted the token    
+				elements_delete(code, tokens, counter);
 			}
 
 		}
@@ -290,25 +229,21 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 			if (*list == ')')                                                   //if statements to determine what tokens, if any, exist
 			{
 				counter++;
-				new_entry.token_name = "AddToken";
-				tokens.push_back(new_entry);									//push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);							//call delete function to remove the characters that consituted the token    
+				cout << "\nAddToken";
+				elements_delete(code, tokens, counter);
 			}
 			else if (*list == 'M')
 			{
 				counter++;
-				new_entry.token_name = "StringEscToken";
-				tokens.push_back(new_entry);									//push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);							//call delete function to remove the characters that consituted the token    
+				cout << "\nStringEscToken";
+				elements_delete(code, tokens, counter);
 			}
 			else
 			{
 				counter++;
 				advance(list, 1);                                                    //advance in the list by 1 
 				cout << "\nErrorToken found on line: " << linecounter << "\n";
-				new_entry.token_name = "ErrorToken";
-				tokens.push_back(new_entry);										//push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);								//call delete function to remove the characters that consituted the token    
+				elements_delete(code, tokens, counter);
 			}
 		}
 		//-----------------//
@@ -321,18 +256,15 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 			if (*list == '[')                                                            //if statements to determine what tokens, if any, exist
 			{
 				counter++;
-				new_entry.token_name = "ArrayDefToken";
-				tokens.push_back(new_entry);											//push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);									//call delete function to remove the characters that consituted the token    
+				cout << "\nArrayDefToken";
+				elements_delete(code, tokens, counter);
 			}
 			else
 			{
 				counter++;
 				advance(list, 1);                                                     //advance in the list by 1 
 				cout << "\nErrorToken found on line: " << linecounter << "\n";
-				new_entry.token_name = "ErrorToken";
-				tokens.push_back(new_entry);										//push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);								//call delete function to remove the characters that consituted the token    
+				elements_delete(code, tokens, counter);
 			}
 
 		}
@@ -365,18 +297,15 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 							if ((*list >= 'A' && *list <= 'F') || (*list >= '0' && *list <= '9'))
 							{
 								counter++;
-								new_entry.token_name = "HexToken";
-								tokens.push_back(new_entry);									//push the generated token into the tokens vector
-								elements_delete(code, tokens, counter);							//call delete function to remove the characters that consituted the token    
+								cout << "\nHexToken";
+								elements_delete(code, tokens, counter);
 							}
 							else
 							{
 								counter++;
 								advance(list, 1);                                               //advance in the list by 1 
 								cout << "\nErrorToken found on line: " << linecounter << "\n";
-								new_entry.token_name = "ErrorToken";
-								tokens.push_back(new_entry);									//push the generated token into the tokens vector
-								elements_delete(code, tokens, counter);							//call delete function to remove the characters that consituted the token    
+								elements_delete(code, tokens, counter);
 							}
 						}
 						else
@@ -384,9 +313,7 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 							counter++;
 							advance(list, 1);                                                  //advance in the list by 1 
 							cout << "\nErrorToken found on line: " << linecounter << "\n";
-							new_entry.token_name = "ErrorToken";
-							tokens.push_back(new_entry);										//push the generated token into the tokens vector
-							elements_delete(code, tokens, counter);								//call delete function to remove the characters that consituted the token    
+							elements_delete(code, tokens, counter);
 						}
 					}
 					else
@@ -394,9 +321,7 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 						counter++;
 						advance(list, 1);                                                        //advance in the list by 1 
 						cout << "\nErrorToken found on line: " << linecounter << "\n";
-						new_entry.token_name = "ErrorToken";
-						tokens.push_back(new_entry);											//push the generated token into the tokens vector
-						elements_delete(code, tokens, counter);									//call delete function to remove the characters that consituted the token    
+						elements_delete(code, tokens, counter);
 					}
 				}
 				else
@@ -404,9 +329,7 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 					counter++;
 					advance(list, 1);                                                       //advance in the list by 1 
 					cout << "\nErrorToken found on line: " << linecounter << "\n";
-					new_entry.token_name = "ErrorToken";
-					tokens.push_back(new_entry);											//push the generated token into the tokens vector
-					elements_delete(code, tokens, counter);									//call delete function to remove the characters that consituted the token    
+					elements_delete(code, tokens, counter);
 				}
 			}
 
@@ -423,8 +346,29 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 			if (*list == '[')
 			{
 				counter++;
-				advance(list, 1);                                                     //advance in the list by 1 
-				if (isalpha(*list) || isalnum(*list))
+				advance(list, 1);
+				if (*list == '\\')
+				{
+					counter++;
+					advance(list, 1);
+					if (*list == 'M')
+					{
+						counter++;
+						advance(list, 1);                                                //advance in the list by 1 
+						if (*list == ']')
+						{
+							counter++;
+							advance(list, 1);                                            //advance in the list by 1 
+							if (*list == ']')
+							{
+								counter++;
+								cout << "\nCharLitToken";
+								elements_delete(code, tokens, counter);
+							}
+						}
+					}
+				}
+				else if (isalpha(*list) || isalnum(*list))
 				{
 					counter++;
 					advance(list, 1);                                                //advance in the list by 1 
@@ -435,19 +379,15 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 						if (*list == ']')
 						{
 							counter++;
-							new_entry.token_name = "CharLitToken";
-							tokens.push_back(new_entry);							//push the generated token into the tokens vector
-							elements_delete(code, tokens, counter);					//call delete function to remove the characters that consituted the token    
-
+							cout << "\nCharLitToken";
+							elements_delete(code, tokens, counter);
 						}
 						else
 						{
 							counter++;
 							advance(list, 1);                                              //advance in the list by 1 
 							cout << "\nErrorToken found on line: " << linecounter << "\n";
-							new_entry.token_name = "ErrorToken";
-							tokens.push_back(new_entry);								//push the generated token into the tokens vector
-							elements_delete(code, tokens, counter);						//call delete function to remove the characters that consituted the token    
+							elements_delete(code, tokens, counter);
 						}
 					}
 					else
@@ -455,9 +395,7 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 						counter++;
 						advance(list, 1);                                                 //advance in the list by 1 
 						cout << "\nErrorToken found on line: " << linecounter << "\n";
-						new_entry.token_name = "ErrorToken";
-						tokens.push_back(new_entry);									//push the generated token into the tokens vector
-						elements_delete(code, tokens, counter);							//call delete function to remove the characters that consituted the token    
+						elements_delete(code, tokens, counter);
 					}
 				}
 				else
@@ -465,23 +403,19 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 					counter++;
 					advance(list, 1);                                                     //advance in the list by 1 
 					cout << "\nErrorToken found on line: " << linecounter << "\n";
-					new_entry.token_name = "ErrorToken";
-					tokens.push_back(new_entry);									     //push the generated token into the tokens vector
-					elements_delete(code, tokens, counter);								//call delete function to remove the characters that consituted the token    
+					elements_delete(code, tokens, counter);
 				}
 			}
-
-			else if (isalpha(*list) || isalnum(*list))                                   //stringlit else if statement
+			else if (*list >= 32 && *list <= 126)
 			{
-				counter++;
 				while (*list != ']')
 				{
 					counter++;
 					advance(list, 1);												    //advance in the list by 1 
 				}
-				new_entry.token_name = "StringLitToken";
-				tokens.push_back(new_entry);											//push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);									//call delete function to remove the characters that consituted the token    
+				counter++;
+				cout << "\nStringLitToken";
+				elements_delete(code, tokens, counter);
 			}
 		}
 		//-----------------//
@@ -514,17 +448,13 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 
 			if (isReal != true)
 			{
-				counter--;
-				new_entry.token_name = "IntToken";
-				tokens.push_back(new_entry);									//push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);							//call delete function to remove the characters that consituted the token    
+				cout << "\nIntLitToken";
+				elements_delete(code, tokens, counter);
 			}
 			else if (isReal == true)
 			{
-				counter--;
-				new_entry.token_name = "RealLitToken";
-				tokens.push_back(new_entry);									//push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);							//call delete function to remove the characters that consituted the token    
+				cout << "\nRealLitToken";
+				elements_delete(code, tokens, counter);
 			}
 		}
 		//-----------------//
@@ -536,13 +466,18 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 		{
 			counter++;
 			advance(list, 1);                                                    //advance in the list by 1 
-			if (*list == 'G')
+			if (*list == ' ')
 			{
 				counter++;
-				new_entry.token_name = "TrueToken";
-				tokens.push_back(new_entry);                                   //push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);							//call delete function to remove the characters that consituted the token    
-
+				advance(list, 1);                                              //advance in the list by 1 
+				cout << "\nSepToken";
+				elements_delete(code, tokens, counter);
+			}
+			else if (*list == 'G')
+			{
+				counter++;
+				cout << "\nTrueToken";
+				elements_delete(code, tokens, counter);
 			}
 			else if (*list == 'N')
 			{
@@ -551,11 +486,11 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 				if (*list == 'G')
 				{
 					counter++;
-					new_entry.token_name = "FalseToken";
-					tokens.push_back(new_entry);                              //push the generated token into the tokens vector
-					elements_delete(code, tokens, counter);						//call delete function to remove the characters that consituted the token    
+					cout << "\nFalseToken";
+					elements_delete(code, tokens, counter);
 				}
 			}
+
 		}
 
 		//--------------------//
@@ -573,9 +508,8 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 				if (*list == '_')
 				{
 					counter++;
-					new_entry.token_name = "DivToken";
-					tokens.push_back(new_entry);                          //push the generated token into the tokens vector
-					elements_delete(code, tokens, counter);					//call delete function to remove the characters that consituted the token    
+					cout << "\nDivToken";
+					elements_delete(code, tokens, counter);
 				}
 			}
 		}
@@ -591,9 +525,8 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 			if (*list == 'P')
 			{
 				counter++;
-				new_entry.token_name = "EOLToken";
-				tokens.push_back(new_entry);                       //push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);				//call delete function to remove the characters that consituted the token    
+				cout << "\nEOLToken";
+				elements_delete(code, tokens, counter);
 			}
 
 			else if (*list == '-')
@@ -607,9 +540,8 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 					if (*list == '%')
 					{
 						counter++;
-						new_entry.token_name = "RBlockToken";
-						tokens.push_back(new_entry);                 //push the generated token into the tokens vector
-						elements_delete(code, tokens, counter);		//call delete function to remove the characters that consituted the token    
+						cout << "\nRBlockToken";
+						elements_delete(code, tokens, counter);
 					}
 				}
 			}
@@ -635,9 +567,8 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 					if (*list == '|')
 					{
 						counter++;
-						new_entry.token_name = "LBlockToken";
-						tokens.push_back(new_entry);						 //push the generated token into the tokens vector
-						elements_delete(code, tokens, counter);				//call delete function to remove the characters that consituted the token    
+						cout << "\nLBlockToken";
+						elements_delete(code, tokens, counter);
 					}
 				}
 			}
@@ -655,9 +586,8 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 			if (*list == '>')
 			{
 				counter++;
-				new_entry.token_name = "PointerToken";
-				tokens.push_back(new_entry);                                    //push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);							//call delete function to remove the characters that consituted the token    
+				cout << "\nPointerToken";
+				elements_delete(code, tokens, counter);
 			}
 		}
 
@@ -673,25 +603,29 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 			if (*list == '>')
 			{
 				counter++;
-				new_entry.token_name = "EqToken";
-				tokens.push_back(new_entry);                                //push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);						//call delete function to remove the characters that consituted the token    
+				cout << "\nEqToken";
+				elements_delete(code, tokens, counter);
 			}
 
 			else if (*list == 'L')
 			{
 				counter++;
-				new_entry.token_name = "LessToken";
-				tokens.push_back(new_entry);                              //push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);					  //call delete function to remove the characters that consituted the token    
+				cout << "\nLessToken";
+				elements_delete(code, tokens, counter);
 			}
 
 			else if (*list == 'E')
 			{
 				counter++;
-				new_entry.token_name = "LessThanOrEqToken";
-				tokens.push_back(new_entry);                             //push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);					 //call delete function to remove the characters that consituted the token    
+				cout << "\nLessThanOrEqToken";
+				elements_delete(code, tokens, counter);
+			}
+			else
+			{
+				counter++;
+				advance(list, 1);                                                 //advance in the list by 1 
+				cout << "\nErrorToken found on line: " << linecounter << "\n";
+				elements_delete(code, tokens, counter);
 			}
 		}
 
@@ -707,17 +641,15 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 			if (*list == 'G')
 			{
 				counter++;
-				new_entry.token_name = "GreaterThanOrEqToken";
-				tokens.push_back(new_entry);                                    //push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);							//call delete function to remove the characters that consituted the token    
+				cout << "\nGreaterThanOrEqToken";
+				elements_delete(code, tokens, counter);
 			}
 
 			else if (*list == 'W')
 			{
 				counter++;
-				new_entry.token_name = "GreaterToken";
-				tokens.push_back(new_entry);                                  //push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);						//call delete function to remove the characters that consituted the token    
+				cout << "\nGreaterToken";
+				elements_delete(code, tokens, counter);
 			}
 		}
 		//------------------------------//
@@ -727,14 +659,19 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 		//LMultiLineComment/Or Token//
 		else if (code[0] == '/')                                            //if statements to determine what tokens, if any, exist
 		{
+			advance(list, 1);
 			counter++;
-			advance(list, 1);												//advance in the list by 1 
 			if (*list == '@')
 			{
+				advance(list, 1);
 				counter++;
-				new_entry.token_name = "LMultiLineCommentToken";
-				tokens.push_back(new_entry);                                  //push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);						//call delete function to remove the characters that consituted the token    
+				while (*list != '@')
+				{
+					advance(list, 1);
+					counter++;
+				}
+				cout << "\nLMultiLineCommentToken";
+				elements_delete(code, tokens, counter);
 			}
 
 			else if (*list == 'B')
@@ -744,16 +681,23 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 				if (*list == '/')
 				{
 					counter++;
-					new_entry.token_name = "OrToken";
-					tokens.push_back(new_entry);                        //push the generated token into the tokens vector
-					elements_delete(code, tokens, counter);				//call delete function to remove the characters that consituted the token    
+					cout << "\nOrToken";
+					elements_delete(code, tokens, counter);
 				}
+			}
+			else
+			{
+				counter++;
+				advance(list, 1);                                                 //advance in the list by 1 
+				cout << "\nErrorToken found on line: " << linecounter << "\n";
+				elements_delete(code, tokens, counter);
 			}
 		}
 		//------------------------//
 
 
 		//SingleLineComment/RMultiLineComment//
+
 		else if (code[0] == '@')                                                 //if statements to determine what tokens, if any, exist
 		{
 			counter++;
@@ -761,22 +705,27 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 			if (*list == '/')
 			{
 				counter++;
-				new_entry.token_name = "RMultiLineCommentToken";
-				tokens.push_back(new_entry);                                     //push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);							//call delete function to remove the characters that consituted the token    
+				cout << "\nRMultiLineCommentToken";
+				elements_delete(code, tokens, counter);
 			}
-
-			else if (code[0])
+			else if (*list != '\n')
 			{
-				while (code[0] != '\n')
+				while (*list != '\n')
 				{
 					counter++;
 					advance(list, 1);                                            //advance in the list by 1 
 				}
-				new_entry.token_name = "SingleLineToken";
-				tokens.push_back(new_entry);                                    //push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);							//call delete function to remove the characters that consituted the token    
+				cout << "\nSingleLineToken";
+				elements_delete(code, tokens, counter);
 			}
+			else if (*list == '/')
+			{
+				counter++;
+				cout << "\nRMultiLineCommentToken";
+				elements_delete(code, tokens, counter);
+			}
+
+
 
 		}
 		//------------------------//
@@ -794,13 +743,28 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 				if (*list == 'V')
 				{
 					counter++;
-					new_entry.token_name = "WhileToken";
-					tokens.push_back(new_entry);                                //push the generated token into the tokens vector
-					elements_delete(code, tokens, counter);						//call delete function to remove the characters that consituted the token    
+					cout << "\nWhileToken";
+					elements_delete(code, tokens, counter);
 				}
 			}
-		}
+			else if (*list == 'O')
+			{
+				counter++;
+				advance(list, 1);                                              //advance in the list by 1 
+				if (*list == 'M')
+				{
+					counter++;
+					advance(list, 1);                                              //advance in the list by 1 
+					if (*list == 'O')
+					{
+						counter++;
+						cout << "\nBreakToken";
+						elements_delete(code, tokens, counter);
+					}
+				}
+			}
 
+		}
 
 		//-------------------------------//
 
@@ -813,13 +777,23 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 			if (*list == 'U')
 			{
 				counter++;
-				advance(list, 1);                                      //advance in the list by 1 
+				advance(list, 1);                                       //advance in the list by 1 
 				if (*list == 'B')
 				{
 					counter++;
-					new_entry.token_name = "CaseToken";
-					tokens.push_back(new_entry);                        //push the generated token into the tokens vector
-					elements_delete(code, tokens, counter);				//call delete function to remove the characters that consituted the token    
+					advance(list, 1);
+					if (*list == ' ')
+					{
+						counter++;
+						advance(list, 1);                                //advance in the list by 1 
+						if ((*list >= 48 && *list <= 57) || (*list >= 65 && *list <= 90) || (*list >= 97 && *list <= 122))
+						{
+							counter++;
+							advance(list, 1);
+							cout << "\nCaseToken";
+							elements_delete(code, tokens, counter);
+						}
+					}
 				}
 			}
 		}
@@ -838,9 +812,8 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 			if (*list == 'D')
 			{
 				counter++;
-				new_entry.token_name = "MultiToken";
-				tokens.push_back(new_entry);							//push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);					//call delete function to remove the characters that consituted the token    
+				cout << "\nMultiToken";
+				elements_delete(code, tokens, counter);
 			}
 		}
 
@@ -858,9 +831,8 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 				if (*list == 'D')
 				{
 					counter++;
-					new_entry.token_name = "ElseToken";
-					tokens.push_back(new_entry);						//push the generated token into the tokens vector
-					elements_delete(code, tokens, counter);				//call delete function to remove the characters that consituted the token    
+					cout << "\nElseToken";
+					elements_delete(code, tokens, counter);
 				}
 			}
 		}
@@ -875,9 +847,8 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 			if (*list == 'B')
 			{
 				counter++;
-				new_entry.token_name = "RealDecToken";
-				tokens.push_back(new_entry);									//push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);							//call delete function to remove the characters that consituted the token    
+				cout << "\nRealDecToken";
+				elements_delete(code, tokens, counter);
 			}
 
 			else if (*list == 'R')
@@ -895,9 +866,50 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 						if (*list == 'S')
 						{
 							counter++;
-							new_entry.token_name = "VoidDecToken";
-							tokens.push_back(new_entry);						//push the generated token into the tokens vector
-							elements_delete(code, tokens, counter);				//call delete function to remove the characters that consituted the token    
+							cout << "\nVoidDecToken";
+							elements_delete(code, tokens, counter);
+						}
+					}
+				}
+			}
+			else if (*list == 'A')
+			{
+				counter++;
+				advance(list, 1);												//advance in the list by 1 
+				if (*list == 'N')
+				{
+					counter++;
+					advance(list, 1);												//advance in the list by 1 
+					if (*list == 'D')
+					{
+						counter++;
+						advance(list, 1);												//advance in the list by 1 
+						if (*list == 'W')
+						{
+							counter++;
+							advance(list, 1);												//advance in the list by 1 
+							if (*list == 'A')
+							{
+								counter++;
+								advance(list, 1);												//advance in the list by 1 
+								if (*list == 'G')
+								{
+									counter++;
+									advance(list, 1);												//advance in the list by 1 
+									if (*list == 'O')
+									{
+										counter++;
+										advance(list, 1);												//advance in the list by 1 
+										if (*list == 'N')
+										{
+											counter++;
+											advance(list, 1);												//advance in the list by 1 
+											cout << "\nDefaultToken";
+											elements_delete(code, tokens, counter);
+										}
+									}
+								}
+							}
 						}
 					}
 				}
@@ -930,12 +942,17 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 							if (*list == 'S')
 							{
 								counter++;
-								new_entry.token_name = "IntDecToken";
-								tokens.push_back(new_entry);						//push the generated token into the tokens vector
-								elements_delete(code, tokens, counter);				//call delete function to remove the characters that consituted the token    
+								cout << "\nIntDecToken";
+								elements_delete(code, tokens, counter);
 							}
 						}
 					}
+				}
+				else if (*list == 'L')
+				{
+					counter++;
+					cout << "\nCHLToken";
+					elements_delete(code, tokens, counter);
 				}
 			}
 
@@ -958,9 +975,8 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 							if (*list == 'S')
 							{
 								counter++;
-								new_entry.token_name = "StringDecToken";
-								tokens.push_back(new_entry);						//push the generated token into the tokens vector
-								elements_delete(code, tokens, counter);				//call delete function to remove the characters that consituted the token    
+								cout << "\nStringDecToken";
+								elements_delete(code, tokens, counter);
 							}
 						}
 					}
@@ -978,9 +994,8 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 					if (*list == 'N')
 					{
 						counter++;
-						new_entry.token_name = "BoolDecToken";
-						tokens.push_back(new_entry);							//push the generated token into the tokens vector
-						elements_delete(code, tokens, counter);					//call delete function to remove the characters that consituted the token    
+						cout << "\nBoolDecToken";
+						elements_delete(code, tokens, counter);
 					}
 				}
 			}
@@ -1004,9 +1019,8 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 					if (*list == 'F')
 					{
 						counter++;
-						new_entry.token_name = "ForToken";
-						tokens.push_back(new_entry);						//push the generated token into the tokens vector
-						elements_delete(code, tokens, counter);				//call delete function to remove the characters that consituted the token    
+						cout << "\nForToken";
+						elements_delete(code, tokens, counter);
 					}
 				}
 
@@ -1017,9 +1031,8 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 					if (*list == 'N')
 					{
 						counter++;
-						new_entry.token_name = "CharDecToken";
-						tokens.push_back(new_entry);					//push the generated token into the tokens vector
-						elements_delete(code, tokens, counter);			//call delete function to remove the characters that consituted the token    
+						cout << "\nCharDecToken";
+						elements_delete(code, tokens, counter);
 					}
 				}
 			}
@@ -1037,9 +1050,8 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 			if (*list == 'O')
 			{
 				counter++;
-				new_entry.token_name = "DerefToken";
-				tokens.push_back(new_entry);								//push the generated token into the tokens vector
-				elements_delete(code, tokens, counter);						//call delete function to remove the characters that consituted the token    
+				cout << "\nDerefToken";
+				elements_delete(code, tokens, counter);
 			}
 		}
 		//---------------------------//
@@ -1069,9 +1081,8 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 							if (*list == 'N')
 							{
 								counter++;
-								new_entry.token_name = "SwitchToken";
-								tokens.push_back(new_entry);						//push the generated token into the tokens vector
-								elements_delete(code, tokens, counter);				//call delete function to remove the characters that consituted the token    
+								cout << "\nSwitchToken";
+								elements_delete(code, tokens, counter);
 							}
 						}
 					}
@@ -1083,14 +1094,128 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 		//Graph 5 ends//
 
 		// MISC Functions //
-		//newline character//
-		else if (code[0] == '\n')                                         //if statements to determine what tokens, if any, exist
+
+		//Function token (added later)
+		else if (code[0] == 'P')                                                     //if statements to determine what tokens, if any, exist
+		{
+			counter++;
+			advance(list, 1);														//advance in the list by 1 
+			if (*list == 'L')
+			{
+				counter++;
+				advance(list, 1);													//advance in the list by 1 
+				if (*list == 'A')
+				{
+					counter++;
+					advance(list, 1);												//advance in the list by 1 
+					if (*list == 'Y')
+					{
+						counter++;
+						cout << "\nPlayToken";
+						elements_delete(code, tokens, counter);
+					}
+				}
+			}
+			else if (*list == 'U')
+			{
+				counter++;
+				advance(list, 1);													//advance in the list by 1 
+				if (*list == 'N')
+				{
+					counter++;
+					advance(list, 1);													//advance in the list by 1 
+					if (*list == 'T')
+					{
+						counter++;
+						cout << "\nPuntToken";
+						elements_delete(code, tokens, counter);
+					}
+				}
+			}
+			else if (*list == 'R')
+			{
+				counter++;
+				cout << "\nPRToken";
+				elements_delete(code, tokens, counter);
+			}
+			else if (*list == 'C')
+			{
+				counter++;
+				cout << "\nIfToken";
+				elements_delete(code, tokens, counter);
+			}
+			else if (*list == 'A')
+			{
+				counter++;
+				advance(list, 1);													//advance in the list by 1 
+				if (*list == 'S')
+				{
+					counter++;
+					advance(list, 1);													//advance in the list by 1 
+					if (*list == 'S')
+					{
+						counter++;
+						cout << "\nReturnToken";
+						elements_delete(code, tokens, counter);
+					}
+				}
+			}
+		}
+
+		//Main function NFL_CHAN
+
+		else if (code[0] == 'N')                                                     //if statements to determine what tokens, if any, exist
+		{
+			counter++;
+			advance(list, 1);														//advance in the list by 1 
+			if (*list == 'F')
+			{
+				counter++;
+				advance(list, 1);													//advance in the list by 1 
+				if (*list == 'L')
+				{
+					counter++;
+					advance(list, 1);												//advance in the list by 1 
+					if (*list == '_')
+					{
+						counter++;
+						advance(list, 1);													//advance in the list by 1 
+						if (*list == 'C')
+						{
+							counter++;
+							advance(list, 1);													//advance in the list by 1 
+							if (*list == 'H')
+							{
+								counter++;
+								advance(list, 1);													//advance in the list by 1 
+								if (*list == 'A')
+								{
+									counter++;
+									advance(list, 1);													//advance in the list by 1 
+									if (*list == 'N')
+									{
+										counter++;
+										cout << "\nMainToken";
+										elements_delete(code, tokens, counter);                      //call delete function to remove the characters that consituted the token    
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		//newline & tab character//
+		else if ((code[0] == '\n') || code[0] == '\t')                                         //if statements to determine what tokens, if any, exist
 		{
 			counter++;
 			linecounter++;
 			advance(list, 1);											//advance in the list by 1 
-			elements_delete(code, tokens, counter);						//call delete function to remove the characters that consituted the token    
+																		//elements_delete(code, tokens, counter);						//call delete function to remove the characters that consituted the token    
+			elements_delete(code, tokens, counter);
 		}
+
 		//-------------------//
 
 		//white space character//
@@ -1098,30 +1223,48 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 		{
 			counter++;
 			advance(list, 1);											//advance in the list by 1 
-			elements_delete(code, tokens, counter);						//call delete function to remove the characters that consituted the token    
+			elements_delete(code, tokens, counter);
 		}
 		//-------------------//
 
-		//ID Token//                //need to push the values of the name into a vector so that those can be pushed into the ST later
+		//ID Token//
 		else if ((code[0] > 'a') && (code[0] < 'z'))                  //if statements to determine what tokens, if any, exist
 		{
-			string token_name;
-			//token_name.append(code[0]);   //how to append char to string
 			counter++;
-			while ((*list > 'a') && (*list < 'z'))
+			advance(list, 1);
+			int a;
+			while (*list > 48 && *list < 122)
 			{
 				counter++;
 				advance(list, 1);
 			}
-													 
-			new_entry.token_name = "ID_Token";
-			tokens.push_back(new_entry);							//push the generated token into the tokens vector
-			elements_delete(code, tokens, counter);					//call delete function to remove the characters that consituted the token    
+
+			a = counter;
+
+			if (counter < 4)
+			{
+				cout << "\nID_Token";
+				elements_delete(code, tokens, counter);                      //call delete function to remove the characters that consituted the token    
+			}
+
+			else if (code[a - 1] == '[')
+			{
+				while ((code[a - 2] >= 0 && (code[a - 2] <= 9)))
+				{
+					a--;
+				}
+				if (code[a - 3] == ']')
+				{
+					cout << "\nID_Array_Token";
+					elements_delete(code, tokens, counter);                      //call delete function to remove the characters that consituted the token    
+				}
+			}
+			else if (code[counter] != '[')
+			{
+				cout << "\nID_Token";
+				elements_delete(code, tokens, counter);                     //call delete function to remove the characters that consituted the token    
+			}
 		}
-	
-		
-		
-		
 		//------------//
 
 
@@ -1131,18 +1274,22 @@ void Scanner::build_tokens(vector<char> code, vector<TOKENS>& tokens)           
 			counter++;
 			advance(list, 1);										//advance in the list by 1 
 			cout << "\nErrorToken found on line: " << linecounter << " error is: " << code[0] << "\n";
-			new_entry.token_name = "ErrorToken";
-			tokens.push_back(new_entry);							//push the generated token into the tokens vector
-			elements_delete(code, tokens, counter);					//call delete function to remove the characters that consituted the token    
+			elements_delete(code, tokens, counter);                      //call delete function to remove the characters that consituted the token    
+
 		}
 	}
 
 
 	else                                                         //else statement to execute if we've reached the end of our code vector
 	{
-		print_tokens(tokens);                                    //send the tokens list to the print function
+		cin.get();                               //pausing the program before execution
 	}
 }
+
+
+
+
+
 
 
 //INSERT INTO SYMBOL TABLE//
@@ -1152,7 +1299,7 @@ void Scanner::insert_symbol_table(vector<TOKENS>& tokens)
 
 	for (int i = 0; i < tokens.size(); i++)
 	{
-		
+
 	}
 
 
@@ -1161,14 +1308,43 @@ void Scanner::insert_symbol_table(vector<TOKENS>& tokens)
 
 
 
+
+
+
+
+
+
+//PRINT FUNCTION--will be removed in final product. Just for testing.//
+void Scanner::print_tokens(vector<TOKENS>& tokens)                                         //printing our list of tokens. This will be replaced by a function the passes said tokens to the other components
+{
+	cout << "\nGENERATED TOKENS\n";
+	cout << "__________________________________________________________________\n\n";
+	for (int i = 0; i < tokens.size(); i++)                                      //iterating through the tokens vector
+	{
+		cout << tokens.at(i).token_name << " ";                                  //print contents at the index
+	}
+	cout << "\n__________________________________________________________________\n";
+
+	cout << "\n--PRESS ENTER TO EXIT--\n";
+
+	cin.get();                                                                   //pausing for the user
+}
+//----------------------------------------//
+
+
+
+
+
+
+
+
 //INITIAL FUNCTION//
 void Scanner::initial()
 {
 	cout << "This program will handle the scanner functions of our compiler.\n--PRESS ENTER TO CONTINUE--\n";
-	cin.get();                               //pausing the program before execution
 	vector<char> working_code;               //vector to hold the characters read in from the input file
-	vector<TOKENS> tokens;                   //vector to hold the tokens that we generate
-	load_code(working_code, tokens);         //call load_code function to begin reading in the code
+	vector<TOKENS> tokens;
+	load_code(working_code,tokens);         //call load_code function to begin reading in the code
 }
 //---------------//
 //--END PROGRAM--//
