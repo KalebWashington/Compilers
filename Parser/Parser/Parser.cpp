@@ -1,8 +1,9 @@
-/*
+
 
 
 #include "Symbol.h" //including SymbolTable functions
 #include "Scanner.h" //including Scanner functions
+#include "Parser.h"
 
 #include <vector>
 #include <fstream>
@@ -15,32 +16,32 @@
 #include <iomanip>
 #include <algorithm>
 
-//using namespace std;
 
 
-
-int main()
+struct TOKENS
 {
-	
-	Symbol symbols;
-	
-	vector<Symbol::TABLE> symbol_table;
-
-	symbols.add_symbol(symbol_table);
-	symbols.add_symbol(symbol_table);
-	symbols.add_symbol(symbol_table);
-	
-	
-	cout << symbol_table.at(0).name;
-	cout << symbol_table.at(1).name;
-	cout << symbol_table.at(2).name;
+	string token_name;
+};
 
 
+struct CHARS
+{
+	char values;
+};
 
-	system("pause");
+
+Scanner scanner;
+Symbol symbol_table;
 
 
-	return 0;
+
+void Parser::match()
+{
+
+
+
 }
 
-*/
+
+
+

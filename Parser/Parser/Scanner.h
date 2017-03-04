@@ -1,4 +1,4 @@
-#ifndef ScannerH_INCLUDED
+#ifndef Scanner_H_INCLUDED
 #define Scanner_H_INCLUDED
 
 
