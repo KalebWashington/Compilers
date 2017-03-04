@@ -15,7 +15,7 @@
 
 using namespace std;
 
-class Scanner
+class Parser
 {
 public:
 	

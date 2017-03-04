@@ -1,9 +1,7 @@
-
-
-
 #include "Symbol.h" //including SymbolTable functions
 #include "Scanner.h" //including Scanner functions
 #include "Parser.h"
+#include "tokens.h"
 
 #include <vector>
 #include <fstream>
@@ -15,6 +13,7 @@
 #include <iostream>
 #include <iomanip>
 #include <algorithm>
+
 
 
 
@@ -33,11 +32,24 @@ struct CHARS
 Scanner scanner;
 Symbol symbol_table;
 
+vector<Symbol::TABLE> tokens;
 
 
-void Parser::match()
+
+void Parser::match(vector<TOKENS>& tokens)
 {
 
+	
+
+	tokens_enum tokenin = tokens.at(0).token_name;
+	
+	switch (tokens)
+	{
+
+		case '1' 
+	default:
+		break;
+	}
 
 
 }
