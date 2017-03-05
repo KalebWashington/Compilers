@@ -21,62 +21,56 @@ std::string lexeme(enum Token token)
 	else if (token == TrueToken) return "^G";
 	else if (token == FalseToken) return "^NG";
 	else if (token == HexToken) return "XO";
-	else if (token == CharLitToken) return "";
-	else if (token == StringLitToken) return "$";
-	else if (token == StringEscToken) return "*";
-	else if (token == VoidDecToken) return " Stray";
-	else if (token == BoolDecToken) return " Dalmatian";
-	else if (token == IntDecToken) return " Poodle";
-	else if (token == CharDecToken) return " Yorkie";
-	else if (token == RealDecToken) return " Corgi";
-	/*else if (token == StringDecToken) return " Dachshund";*/
-	else if (token == NameToken) return " someName";
-	else if (token == VoidToken) return " Stray";
-	else if (token == BoolToken) return " OO";
-	else if (token == IntToken) return "232";
-	else if (token == CharToken) return "^d^";
-	else if (token == RealToken) return "5.2";
-	else if (token == StringToken) return "$d$";
-	else if (token == LParenToken) return "@=";
-	else if (token == RParenToken) return "=@";
-	else if (token == SeparatorToken) return "::";
-	else if (token == ArrayDefToken) return "|";
-	else if (token == PointerDefToken) return "..";
-	else if (token == DerefToken) return "--";
-	else if (token == SingleLineCommentToken) return " PANT\n";
-	else if (token == LMultiLineCommentToken) return " GRR";
-	else if (token == RMultiLineCommentToken) return " BARK";
-	else if (token == LBlockToken) return " SQUIRREL";
-	else if (token == RBlockToken) return " Nevermind...";
-	else if (token == IfToken) return " Sniff";
-	else if (token == ElseToken) return " Sneeze";
-	else if (token == SwitchToken) return " NAPTIME";
-	else if (token == CaseToken) return " Bed";
-	else if (token == DefaultToken) return " Doghouse";
-	else if (token == BreakToken) return " Wake!";
-	else if (token == WhileToken) return " Chase";
-	else if (token == ForToken) return " Rollover";
-	else if (token == FromToken) return " From";
-	else if (token == ToToken) return " To";
-	else if (token == RepeatToken) return " Scratch";
-	else if (token == UntilToken) return " NOFLEAS";
-	else if (token == InputIntToken) return " FeedPoodle";
-	else if (token == InputCharToken) return " FeedYorkie";
-	else if (token == InputRealToken) return " FeedCorgi";
-	/*else if (token == InputStringToken) return " FeedDachshund";*/
-	else if (token == InputBoolToken) return " FeedDalmatian";
-	else if (token == PrintIntToken) return " SpeakPoodle";
-	else if (token == PrintCharToken) return " SpeakYorkie";
-	else if (token == PrintRealToken) return " SpeakCorgi";
-	/*else if (token == PrintStringToken) return " SpeakDachshund";*/
-	else if (token == PrintBoolToken) return " SpeakDalmation";
-	else if (token == LessOrEqualToken) return "<}<>";
-	else if (token == GreaterOrEqualToken) return "{><>";
-	else if (token == NotEqualToken) return ":3<>";
-	else if (token == PositiveToken) return "+&";
-	else if (token == NegativeToken) return "-&";
-	else if (token == BedEndToken) return "?";
-	else if (token == AddressOfToken) return "|P";
+	else if (token == CharLitToken) return "[[]]";//this is going to be tricky
+	else if (token == StringLitToken) return "[]";//this is going to be tricky
+	else if (token == StringEscToken) return "\M";
+	else if (token == VoidDecToken) return " BRWNS";
+	else if (token == BoolDecToken) return "COIN";
+	else if (token == IntDecToken) return "CHAINS";
+	else if (token == CharDecToken) return "GOON";
+	else if (token == RealDecToken) return "BB";
+	else if (token == StringDecToken) return "CLEATS";
+	else if (token == IdToken) return " IDToken";
+	//else if (token == VoidToken) return " ";
+	//else if (token == BoolToken) return " ";
+	//else if (token == IntToken) return "";
+	//else if (token == CharToken) return "";
+	//else if (token == RealToken) return "";
+	//else if (token == StringToken) return "";
+	else if (token == LParenToken) return "#L#";
+	else if (token == RParenToken) return "#R#";
+	else if (token == SeperatorToken) return "^";
+	else if (token == ArrayDefToken) return "][";//this is going to be tricky
+	else if (token == PointerDefToken) return "~>";
+	else if (token == DerefToken) return "KO";
+	else if (token == SingleLineCommentToken) return "@";
+	else if (token == LMultiLineCommentToken) return "/@";
+	else if (token == RMultiLineCommentToken) return "@/";
+	else if (token == LBlockToken) return "%--|";
+	else if (token == RBlockToken) return "|--%";
+	else if (token == IfToken) return "PC";
+	else if (token == ElseToken) return "AUD";
+	else if (token == SwitchToken) return "MOTION";
+	else if (token == CaseToken) return "SUB";
+	else if (token == DefaultToken) return "BANDWAGON";
+	else if (token == BreakToken) return "ROMO";
+	else if (token == WhileToken) return "REV";
+	else if (token == ForToken) return "GOLF";
+	else if (token == DoToken) return "CHL";
+	else if (token == InputIntToken) return "PR CHAINS";
+	else if (token == InputCharToken) return "PR GOON";
+	else if (token == InputRealToken) return "PR BB";
+	else if (token == InputStringToken) return "PR CLEATS";
+	else if (token == InputBoolToken) return "PR COIN";
+	else if (token == PrintIntToken) return " PUNT CHAINS";
+	else if (token == PrintCharToken) return "PUNT GOON";
+	else if (token == PrintRealToken) return "PUNT BB";
+	else if (token == PrintStringToken) return "PUNT CLEATS";
+	else if (token == PrintBoolToken) return "PUNT COIN";
+	else if (token == LessOrEqualToken) return "<E";
+	else if (token == GreaterOrEqualToken) return ">G";
+	//else if (token == NegativeToken) return ""; //I don't think we clarified this
+	else if (token == AddressOfToken) return "$'";
 	else if (token == ErrorToken) return "ErrorToken";
 	return "Error";
 }
@@ -109,14 +103,14 @@ std::ostream& operator<<(std::ostream& os, enum Token token)
 	else if (token == IntDecToken) return os << "IntDecToken";
 	else if (token == CharDecToken) return os << "CharDecToken";
 	else if (token == RealDecToken) return os << "RealDecToken";
-	/* else if (token == StringDecToken) return os << "StringDecToken";*/
-	else if (token == NameToken) return os << "NameToken";
-	else if (token == VoidToken) return os << "VoidToken";
-	else if (token == BoolToken) return os << "BoolToken";
-	else if (token == IntToken) return os << "IntToken";
-	else if (token == CharToken) return os << "CharToken";
-	else if (token == RealToken) return os << "RealToken";
-	else if (token == StringToken) return os << "StringToken";
+	else if (token == StringDecToken) return os << "StringDecToken";
+//	else if (token == IdToken) return os << "IdToken";
+//	else if (token == VoidToken) return os << "VoidToken";
+//	else if (token == BoolToken) return os << "BoolToken";
+//	else if (token == IntToken) return os << "IntToken";
+//	else if (token == CharToken) return os << "CharToken";
+//	else if (token == RealToken) return os << "RealToken";
+//	else if (token == StringToken) return os << "StringToken";
 	else if (token == LParenToken) return os << "LParenToken";
 	else if (token == RParenToken) return os << "RParenToken";
 	else if (token == SeparatorToken) return os << "SeperatorToken";
@@ -132,28 +126,24 @@ std::ostream& operator<<(std::ostream& os, enum Token token)
 	else if (token == ElseToken) return os << "ElseToken";
 	else if (token == SwitchToken) return os << "SwitchToken";
 	else if (token == CaseToken) return os << "CaseToken";
+	else if (token == DefaultToken) return "DefaultToken";
+	else if (token == BreakToken) return "BreakToken";
 	else if (token == WhileToken) return os << "WhileToken";
 	else if (token == ForToken) return os << "ForToken";
-	else if (token == FromToken) return os << "FromToken";
-	else if (token == ToToken) return os << "ToToken";
-	else if (token == RepeatToken) return os << "RepeatToken";
-	else if (token == UntilToken) return os << "UntilToken";
+	else if (token == DoToken) return "DoToken";
 	else if (token == InputIntToken) return os << "InputIntToken";
 	else if (token == InputCharToken) return os << "InputCharToken";
 	else if (token == InputRealToken) return os << "InputRealToken";
-	/* else if (token == InputStringToken) return os << "InputStringToken";*/
+	else if (token == InputStringToken) return os << "InputStringToken";
 	else if (token == InputBoolToken) return os << "InputBoolToken";
 	else if (token == PrintIntToken) return os << "PrintIntToken";
 	else if (token == PrintCharToken) return os << "PrintCharToken";
 	else if (token == PrintRealToken) return os << "PrintRealToken";
-	/* else if (token == PrintStringToken) return os << "PrintStringToken";*/
+	else if (token == PrintStringToken) return os << "PrintStringToken";
 	else if (token == PrintBoolToken) return os << "PrintBoolToken";
 	else if (token == LessOrEqualToken) return os << "LessOrEqualToken";
 	else if (token == GreaterOrEqualToken) return os << "GreaterOrEqualToken";
-	else if (token == NotEqualToken) return os << " NotEqualToken";
-	else if (token == PositiveToken) return os << "PositiveToken";
-	else if (token == NegativeToken) return os << "NegativeToken";
-	else if (token == BedEndToken) return os << "BedEndToken";
+	//else if (token == NegativeToken) return os << "NegativeToken"; //I don't think we clarified this
 	else if (token == AddressOfToken) return os << "AddressOfToken";
 	else if (token == ErrorToken) return os << "ErrorToken";
 	return os << "Error";
@@ -163,3 +153,4 @@ std::ostream& operator<<(std::ostream& os, TokenInfo token)
 {
 	return os << "{ token: " << token.token << " lex: " << token.value.c_str() << " }";
 }
+
