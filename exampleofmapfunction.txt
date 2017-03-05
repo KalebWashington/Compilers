@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+#include <map>
+#include <vector>
+using namespace std;
+
+enum token { EoLToken, AddToken,   SubToken };
+map<string, token> tokens;
+
+struct TOKENS
+{
+	string token_name;
+};
+
+void register_tokens()
+{
+	tokens["EoLToken"] = EoLToken;
+	tokens["AddToken"] = AddToken;
+	tokens["SubToken"] =   SubToken;
+}
+
+int main()
+{
+	register_tokens();
+	vector <TOKENS> tokeninput;
+
+	TOKENS test;
+	test.token_name = "EolToken";
+	tokeninput.push_back(test);
+	//tokeninput.at(0).token_name;
+	cout<<tokeninput.size();
+
+	switch (tokens[tokeninput.at(0).token_name])
+	{
+	case EoLToken:
+		cout << "EoLToken!"; break;
+	case AddToken:
+		cout << "AddToken!"; break;
+	case SubToken:
+		cout << "  SubToken!"; break;
+	default: 
+		cout << "default"; break;
+	}
+
+	cin.get();
+	return 0;
+}
