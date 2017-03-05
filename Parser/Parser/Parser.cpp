@@ -1,3 +1,4 @@
+/*
 #include "Symbol.h" //including SymbolTable functions
 #include "Scanner.h" //including Scanner functions
 #include "Parser.h"
@@ -57,3 +58,4 @@ void Parser::match(vector<TOKENS>& tokens)
 
 
 
+*/

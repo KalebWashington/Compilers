@@ -29,7 +29,9 @@ int main()
 	vector<Scanner::TOKENS> tokens;                 
 
 	input_code.load_code(working_code, tokens);
-	input_code.insert_symbol_table(tokens);
+	
+	cout << "\n\n\n"<<tokens.at(2).token_name<<"\n\n"; //testing to see if we can reach the tokens
+
 
 	
 	
