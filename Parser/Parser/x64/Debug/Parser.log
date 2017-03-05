@@ -1,0 +1,50 @@
+﻿  tokens.cpp
+c:\users\kdwashington\desktop\parser\parser\tokens.cpp(7): warning C4129: ')': unrecognized character escape sequence
+c:\users\kdwashington\desktop\parser\parser\tokens.cpp(26): warning C4129: 'M': unrecognized character escape sequence
+c:\users\kdwashington\desktop\parser\parser\tokens.cpp(154): error C2061: syntax error: identifier 'TokenInfo'
+c:\users\kdwashington\desktop\parser\parser\tokens.cpp(155): error C2805: binary 'operator <<' has too few parameters
+c:\users\kdwashington\desktop\parser\parser\tokens.cpp(156): error C2065: 'token': undeclared identifier
+c:\users\kdwashington\desktop\parser\parser\tokens.cpp(156): error C2228: left of '.token' must have class/struct/union
+  c:\users\kdwashington\desktop\parser\parser\tokens.cpp(156): note: type is 'unknown-type'
+c:\users\kdwashington\desktop\parser\parser\tokens.cpp(156): error C2228: left of '.value' must have class/struct/union
+  c:\users\kdwashington\desktop\parser\parser\tokens.cpp(156): note: type is 'unknown-type'
+c:\users\kdwashington\desktop\parser\parser\tokens.cpp(156): error C2228: left of '.c_str' must have class/struct/union
+  Scanner.cpp
+c:\users\kdwashington\desktop\parser\parser\parser.h(27): error C3646: 'currentToken': unknown override specifier
+c:\users\kdwashington\desktop\parser\parser\parser.h(27): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\kdwashington\desktop\parser\parser\parser.h(28): error C3646: 'getNextToken': unknown override specifier
+c:\users\kdwashington\desktop\parser\parser\parser.h(28): error C2059: syntax error: '('
+c:\users\kdwashington\desktop\parser\parser\parser.h(28): error C2238: unexpected token(s) preceding ';'
+c:\users\kdwashington\desktop\parser\parser\scanner.cpp(30): warning C4551: function call missing argument list
+  Parser.cpp
+c:\users\kdwashington\desktop\parser\parser\parser.h(27): error C3646: 'currentToken': unknown override specifier
+c:\users\kdwashington\desktop\parser\parser\parser.h(27): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\kdwashington\desktop\parser\parser\parser.h(28): error C3646: 'getNextToken': unknown override specifier
+c:\users\kdwashington\desktop\parser\parser\parser.h(28): error C2059: syntax error: '('
+c:\users\kdwashington\desktop\parser\parser\parser.h(28): error C2238: unexpected token(s) preceding ';'
+c:\users\kdwashington\desktop\parser\parser\parser.cpp(51): error C2679: binary '[': no operator found which takes a right-hand operand of type 'std::string' (or there is no acceptable conversion)
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(1229): note: could be 'Scanner::TOKENS &std::vector<Scanner::TOKENS,std::allocator<_Ty>>::operator [](unsigned __int64)'
+          with
+          [
+              _Ty=Scanner::TOKENS
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(1213): note: or       'const Scanner::TOKENS &std::vector<Scanner::TOKENS,std::allocator<_Ty>>::operator [](unsigned __int64) const'
+          with
+          [
+              _Ty=Scanner::TOKENS
+          ]
+  c:\users\kdwashington\desktop\parser\parser\parser.cpp(51): note: while trying to match the argument list '(std::vector<Scanner::TOKENS,std::allocator<_Ty>>, std::string)'
+          with
+          [
+              _Ty=Scanner::TOKENS
+          ]
+c:\users\kdwashington\desktop\parser\parser\parser.cpp(351): error C2589: 'end of file': illegal token on right side of '::'
+c:\users\kdwashington\desktop\parser\parser\parser.cpp(351): error C2143: syntax error: missing ';' before '::'
+c:\users\kdwashington\desktop\parser\parser\parser.cpp(351): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  Main.cpp
+c:\users\kdwashington\desktop\parser\parser\parser.h(27): error C3646: 'currentToken': unknown override specifier
+c:\users\kdwashington\desktop\parser\parser\parser.h(27): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\kdwashington\desktop\parser\parser\parser.h(28): error C3646: 'getNextToken': unknown override specifier
+c:\users\kdwashington\desktop\parser\parser\parser.h(28): error C2059: syntax error: '('
+c:\users\kdwashington\desktop\parser\parser\parser.h(28): error C2238: unexpected token(s) preceding ';'
+  Generating Code...
