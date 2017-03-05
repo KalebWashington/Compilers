@@ -64,7 +64,7 @@ enum token{
 		PrintStringToken,	//	PUNT CLEATS
 		PrintBoolToken,	//	PUNT COIN
 		ErrorToken,	//parse error
-		FetchToken,           //-----         ----
+		FetchToken,           //-----         ------
 	};
 
 map<string, token> tokens;
