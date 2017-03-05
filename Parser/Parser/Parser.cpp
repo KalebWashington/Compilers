@@ -39,23 +39,98 @@ Symbol symbol_table;
 
 void Parser::match(vector<Scanner::TOKENS>& tokens)
 {
-
+	register_tokens();//refer to mapping
 	
 	
 	cout << tokens.at(2).token_name;
 	
-	/*
-	tokens_enum tokenin = tokens.at(0).token_name;
-	
-	switch (tokens)
-	{
 
-		case '1' 
+
+	switch (tokens[tokens.at(0).token_name])
+	{
+	case playtoken:
+		break;
+	case iftoken:
+		break;
+	case audtoken;
+		break;
+	case ForToken:
+		break;
+	case WhileToken:
+		break;
+	case DoWhileToken:
+		break;
+	case EoLToken:
+		break;
+	case LBlockToken:
+		break;
+	case RBlockToken:
+		break;
+	case PointerDefToken:
+		break;
+	case DerefToken:
+		break;
+	case OrToken:
+		break;
+	case AndToken:
+		break;
+	case equateToken:
+		break;
+	case AddToken:
+		break;
+	case SubToken:
+		break;
+	case MultToken:
+		break;
+	case DivToken:
+		break;
+	case ModToken:
+		break;
+	case incrementToken:
+		break;
+	case decrementToken:
+		break;
+	case NegateToken:
+		break;
+	case LParenToken:
+		break;
+	case RParenToken:
+		break;
+	case SeperatorToken:
+		break;
+	case LessToken:
+		break;
+	case GreaterToken:
+		break;
+	case LessThanOrEqToken:
+		break;
+	case GreaterThanOrEqToken:
+		break;
+	case ArrayDefToken:
+		break;
+	case TrueToken:
+		break;
+	case FalseToken:
+		break;
+	case CharLitToken:
+		break;
+	case RealToken:
+		break;
+	case BoolDecToken:
+		break;
+	case VoidDecToken:
+		break;
+	case HexToken:
+		break;
+	case StringLitToken:
+		break;
+	case newLineToken:
+		break;
+	case IntToken:
+		break;
 	default:
 		break;
 	}
-
-	*/
 }
 
 

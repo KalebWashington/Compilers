@@ -3,71 +3,72 @@
 #include <map>
 #include <string>
 #include <iostream>
+using namespace std;
 
-enum token{
-		EoLToken,			//;           |P
-		AddToken,			// +	\)
-		SubToken,			// -	)
-		MultToken,			// *	TD
-		DivToken,			// /	_^_
-		IncrToken,			// ++	-(
-		DecrToken,			// --	-)
-		AssignToken,		// ==	--
-		LessToken,			// <	<L
-		LessThanOrEqToken,	// <=	<E
-		GreaterToken,	// >	>W
+enum Token{
+		EoLToken,				//;     |P
+		AddToken,				// +	\)
+		SubToken,				// -	)
+		MultToken,				// *	TD
+		DivToken,				// /	_^_
+		IncrToken,				// ++	-(
+		DecrToken,				// --	-)
+		AssignToken,			// ==	--
+		LessToken,				// <	<L
+		LessThanOrEqToken,		// <=	<E
+		GreaterToken,			// >	>W
 		GreaterThanOrEqToken,	// >=	>G
-		EqToken,	// =	<>
-		NegateToken,	// !	// =* 
-		AndToken,	// &&	*N
-		OrToken,	// ||	/B/
-		TrueToken,	// True	^G
-		FalseToken,	// False	^NG
-		HexToken,	// 0x	XO
-		CharLitToken,	// '	[]
-		StringLitToken,	// ''	[[]]
-		StringEscToken,	// \	\M
-		VoidDecToken,	// void	BRWNS
-		BoolDecToken,	// bool	COIN
-		IntDecToken,	// int	CHAINS
-		CharDecToken,	// char	GOON
-		RealDecToken,	// real	BB
-		StringDecToken,	// string	CLEATS
-		NameToken,	// <id>	<id>
-		IntToken,	// 4	// 5
-		RealToken,	// 4.1	// 4.2
-		LParenToken,	// (	#L#
-		RParenToken,	// )	#R#
-		SeperatorToken,	// ,	^
-		ArrayDefToken,	// []	][
-		PointerDefToken,	// *variable	~>
-		DerefToken,	// *variable	KO
+		EqToken,				// =	<>
+		NegateToken,			// !	=* 
+		AndToken,				// &&	*N
+		OrToken,				// ||	/B/
+		TrueToken,				// True	^G
+		FalseToken,				// False^NG
+		HexToken,				// 0x	XO
+		CharLitToken,			// '	[]
+		StringLitToken,			// ''	[[]]
+		StringEscToken,			// \	\M
+		VoidDecToken,			// void	BRWNS
+		BoolDecToken,			// bool	COIN
+		IntDecToken,			// int	CHAINS
+		CharDecToken,			// char	GOON
+		RealDecToken,			// real	BB
+		StringDecToken,			// string	CLEATS
+		NameToken,				// <id>	<id>
+		IntToken,				// 4	// 5
+		RealToken,				// 4.1	// 4.2
+		LParenToken,			// (	#L#
+		RParenToken,			// )	#R#
+		SeperatorToken,			// ,	^
+		ArrayDefToken,			// []	][
+		PointerDefToken,		// *variable	~>
+		DerefToken,				// *variable	KO
 		SingleLineCommentToken,	// //	@
 		LMultiLineCommentToken,	// /*	/@
 		RMultiLineCommentToken,	// */	@/
-		LBlockToken,	// {	---|
-		RBlockToken,	// }	|---
-		IfToken,	// if 	PC
-		ElseToken,	// else	AUD
-		SwitchToken,	// switch	MOTION
-		CaseToken,	// case	SUB
-		WhileToken,	// while	REV
-		ForToken,	// for 	GOLF
-		InputIntToken,	// 	PR CHAINS
-		InputCharToken,	//	PR GOON
-		InputRealToken,	//	PR BB
-		InputStringToken,	//	PR CLEATS
-		InputBoolToken,	//	PR COIN
-		PrintIntToken,	//	PUNT CHAINS
-		PrintCharToken,	//	PUNT GOON
-		PrintRealToken,	//	PUNT BB
-		PrintStringToken,	//	PUNT CLEATS
-		PrintBoolToken,	//	PUNT COIN
-		ErrorToken,	//parse error
-		FetchToken,           //-----         ------
+		LBlockToken,			// {	---|
+		RBlockToken,			// }	|---
+		IfToken,				// if 	PC
+		ElseToken,				// else	AUD
+		SwitchToken,			// switch	MOTION
+		CaseToken,				// case	SUB
+		WhileToken,				// while	REV
+		ForToken,				// for 	GOLF
+		InputIntToken,			// 	PR CHAINS
+		InputCharToken,			//	PR GOON
+		InputRealToken,			//	PR BB
+		InputStringToken,		//	PR CLEATS
+		InputBoolToken,			//	PR COIN
+		PrintIntToken,			//	PUNT CHAINS
+		PrintCharToken,			//	PUNT GOON
+		PrintRealToken,			//	PUNT BB
+		PrintStringToken,		//	PUNT CLEATS
+		PrintBoolToken,			//	PUNT COIN
+		ErrorToken,				//parse error
+		FetchToken,				//-----         ------
 	};
 
-map<string, token> tokens;
+std::map<string, Token> tokens;
 
 void register_tokens()
 {
