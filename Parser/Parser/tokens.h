@@ -1,68 +1,135 @@
 #ifndef TOKENS_H
 #define TOKENS_H
+#include <map>
+#include <string>
 #include <iostream>
 
+enum token{
+		EoLToken,			//;           |P
+		AddToken,			// +	\)
+		SubToken,			// -	)
+		MultToken,			// *	TD
+		DivToken,			// /	_^_
+		IncrToken,			// ++	-(
+		DecrToken,			// --	-)
+		AssignToken,		// ==	--
+		LessToken,			// <	<L
+		LessThanOrEqToken,	// <=	<E
+		GreaterToken,	// >	>W
+		GreaterThanOrEqToken,	// >=	>G
+		EqToken,	// =	<>
+		NegateToken,	// !	// =* 
+		AndToken,	// &&	*N
+		OrToken,	// ||	/B/
+		TrueToken,	// True	^G
+		FalseToken,	// False	^NG
+		HexToken,	// 0x	XO
+		CharLitToken,	// '	[]
+		StringLitToken,	// ''	[[]]
+		StringEscToken,	// \	\M
+		VoidDecToken,	// void	BRWNS
+		BoolDecToken,	// bool	COIN
+		IntDecToken,	// int	CHAINS
+		CharDecToken,	// char	GOON
+		RealDecToken,	// real	BB
+		StringDecToken,	// string	CLEATS
+		NameToken,	// <id>	<id>
+		IntToken,	// 4	// 5
+		RealToken,	// 4.1	// 4.2
+		LParenToken,	// (	#L#
+		RParenToken,	// )	#R#
+		SeperatorToken,	// ,	^
+		ArrayDefToken,	// []	][
+		PointerDefToken,	// *variable	~>
+		DerefToken,	// *variable	KO
+		SingleLineCommentToken,	// //	@
+		LMultiLineCommentToken,	// /*	/@
+		RMultiLineCommentToken,	// */	@/
+		LBlockToken,	// {	---|
+		RBlockToken,	// }	|---
+		IfToken,	// if 	PC
+		ElseToken,	// else	AUD
+		SwitchToken,	// switch	MOTION
+		CaseToken,	// case	SUB
+		WhileToken,	// while	REV
+		ForToken,	// for 	GOLF
+		InputIntToken,	// 	PR CHAINS
+		InputCharToken,	//	PR GOON
+		InputRealToken,	//	PR BB
+		InputStringToken,	//	PR CLEATS
+		InputBoolToken,	//	PR COIN
+		PrintIntToken,	//	PUNT CHAINS
+		PrintCharToken,	//	PUNT GOON
+		PrintRealToken,	//	PUNT BB
+		PrintStringToken,	//	PUNT CLEATS
+		PrintBoolToken,	//	PUNT COIN
+		ErrorToken,	//parse error
+		FetchToken,           //-----         ----
+	};
 
-typedef enum {
-		EoLToken = 1,			//;           |P
-		AddToken = 2,			// +	\)
-		SubToken = 3,			// -	)
-		MultToken = 4,			// *	TD
-		DivToken = 5,			// /	_^_
-		IncrToken = 6,			// ++	-(
-		DecrToken = 7,			// --	-)
-		AssignToken = 8,		// ==	--
-		LessToken = 9,			// <	<L
-		LessThanOrEqToken = 10,	// <=	<E
-		GreaterToken = 11,	// >	>W
-		GreaterThanOrEqToken = 12,	// >=	>G
-		EqToken = 13,	// =	<>
-		NegateToken = 14,	// !	// =* 
-		AndToken = 15,	// &&	*N
-		OrToken = 16,	// ||	/B/
-		TrueToken = 17,	// True	^G
-		FalseToken = 18,	// False	^NG
-		HexToken = 19,	// 0x	XO
-		CharLitToken = 20,	// '	[]
-		StringLitToken = 21,	// ''	[[]]
-		StringEscToken = 22,	// \	\M
-		VoidDecToken = 23,	// void	BRWNS
-		BoolDecToken = 24,	// bool	COIN
-		IntDecToken = 25,	// int	CHAINS
-		CharDecToken = 26,	// char	GOON
-		RealDecToken = 27,	// real	BB
-		StringDecToken = 28,	// string	CLEATS
-		NameToken = 29,	// <id>	<id>
-		IntToken = 30,	// 4	// 5
-		RealToken = 31,	// 4.1	// 4.2
-		LParenToken = 32,	// (	#L#
-		RParenToken = 33,	// )	#R#
-		SeperatorToken = 34,	// ,	^
-		ArrayDefToken = 35,	// []	][
-		PointerDefToken = 36,	// *variable	~>
-		DerefToken = 37,	// *variable	KO
-		SingleLineCommentToken = 38,	// //	@
-		LMultiLineCommentToken = 39,	// /*	/@
-		RMultiLineCommentToken = 40,	// */	@/
-		LBlockToken = 41,	// {	---|
-		RBlockToken = 42,	// }	|---
-		IfToken = 43,	// if 	PC
-		ElseToken = 44,	// else	AUD
-		SwitchToken = 45,	// switch	MOTION
-		CaseToken = 46,	// case	SUB
-		WhileToken = 47,	// while	REV
-		ForToken = 48,	// for 	GOLF
-		InputIntToken = 49,	// 	PR CHAINS
-		InputCharToken = 50,	//	PR GOON
-		InputRealToken = 51,	//	PR BB
-		InputStringToken = 52,	//	PR CLEATS
-		InputBoolToken = 53,	//	PR COIN
-		PrintIntToken = 54,	//	PUNT CHAINS
-		PrintCharToken = 55,	//	PUNT GOON
-		PrintRealToken = 56,	//	PUNT BB
-		PrintStringToken = 57,	//	PUNT CLEATS
-		PrintBoolToken = 58,	//	PUNT COIN
-		ErrorToken = 59,	//parse error
-		FetchToken = 60,           //-----         ----
-	} tokens_enum;
+map<string, token> tokens;
+
+void register_tokens()
+{
+	tokens["EoLToken"] = EoLToken;
+	tokens["AddToken"] = AddToken;
+	tokens["SubToken"] = SubToken;
+	tokens["MultToken"] = MultToken;
+	tokens["DivToken"] = DivToken;
+	tokens["IncrToken"] = IncrToken;
+	tokens["DecrToken"] = DecrToken;
+	tokens["AssignToken"] = AssignToken;
+	tokens["LessToken"] = LessToken;
+	tokens["LessThanOrEqToken"] = LessThanOrEqToken;
+	tokens["GreaterToken"] = GreaterToken;
+	tokens["GreaterThanOrEqToken"] = GreaterThanOrEqToken;
+	tokens["EqToken"] = EqToken;
+	tokens["NegateToken"] = NegateToken;
+	tokens["AndToken"] = AndToken;
+	tokens["OrToken"] = OrToken;
+	tokens["TrueToken"] = TrueToken;
+	tokens["FalseToken"] = FalseToken;
+	tokens["HexToken"] = HexToken;
+	tokens["CharLitToken"] = CharLitToken;
+	tokens["StringLitToken"] = StringLitToken;
+	tokens["StringEscToken"] = StringEscToken;
+	tokens["VoidDecToken"] = VoidDecToken;
+	tokens["BoolDecToken"] = BoolDecToken;
+	tokens["IntDecToken"] = IntDecToken;
+	tokens["CharDecToken"] = CharDecToken;
+	tokens["RealDecToken"] = RealDecToken;
+	tokens["StringDecToken"] = StringDecToken;
+	tokens["NameToken"] = NameToken;
+	tokens["IntToken"] = IntToken;
+	tokens["RealToken"] = RealToken;
+	tokens["LParenToken"] = LParenToken;
+	tokens["RParenToken"] = RParenToken;
+	tokens["SeperatorToken"] = SeperatorToken;
+	tokens["ArrayDefToken"] = ArrayDefToken;
+	tokens["PointerDefToken"] = PointerDefToken;
+	tokens["DerefToken"] = DerefToken;
+	tokens["SingleLineCommentToken"] = SingleLineCommentToken;
+	tokens["LMultiLineCommentToken"] = LMultiLineCommentToken;
+	tokens["RMultiLineCommentToken"] = RMultiLineCommentToken;
+	tokens["LBlockToken"] = LBlockToken;
+	tokens["RBlockToken"] = RBlockToken;
+	tokens["IfToken"] = IfToken;
+	tokens["ElseToken"] = ElseToken;
+	tokens["SwitchToken"] = SwitchToken;
+	tokens["CaseToken"] = CaseToken;
+	tokens["WhileToken"] = WhileToken;
+	tokens["ForToken"] = ForToken;
+	tokens["InputIntToken"] = InputIntToken;
+	tokens["InputCharToken"] = InputCharToken;
+	tokens["InputRealToken"] = InputRealToken;
+	tokens["InputStringToken"] = InputStringToken;
+	tokens["InputBoolToken"] = InputBoolToken;
+	tokens["PrintIntToken"] = PrintIntToken;
+	tokens["PrintCharToken"] = PrintCharToken;
+	tokens["PrintRealToken"] = PrintRealToken;
+	tokens["PrintStringToken"] = PrintStringToken;
+	tokens["PrintBoolToken"] = PrintBoolToken;
+	tokens["ErrorToken"] = ErrorToken;
+	tokens["FetchToken"] = FetchToken;
+}
 #endif
