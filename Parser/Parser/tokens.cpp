@@ -33,7 +33,7 @@ std::string lexeme(enum Token token)
 	else if (token == IdToken) return " IDToken";
 	//else if (token == VoidToken) return " ";
 	//else if (token == BoolToken) return " ";
-	//else if (token == IntToken) return "";
+	else if (token == IntToken) return "IntToken";
 	//else if (token == CharToken) return "";
 	//else if (token == RealToken) return "";
 	//else if (token == StringToken) return "";
@@ -72,6 +72,7 @@ std::string lexeme(enum Token token)
 	//else if (token == NegativeToken) return ""; //I don't think we clarified this
 	else if (token == AddressOfToken) return "$'";
 	else if (token == ErrorToken) return "ErrorToken";
+	else if (token == NewLineToken) return "|P";
 	return "Error";
 }
 
@@ -104,13 +105,13 @@ std::ostream& operator<<(std::ostream& os, enum Token token)
 	else if (token == CharDecToken) return os << "CharDecToken";
 	else if (token == RealDecToken) return os << "RealDecToken";
 	else if (token == StringDecToken) return os << "StringDecToken";
-//	else if (token == IdToken) return os << "IdToken";
-//	else if (token == VoidToken) return os << "VoidToken";
-//	else if (token == BoolToken) return os << "BoolToken";
-//	else if (token == IntToken) return os << "IntToken";
-//	else if (token == CharToken) return os << "CharToken";
-//	else if (token == RealToken) return os << "RealToken";
-//	else if (token == StringToken) return os << "StringToken";
+	//	else if (token == IdToken) return os << "IdToken";
+	//	else if (token == VoidToken) return os << "VoidToken";
+	//	else if (token == BoolToken) return os << "BoolToken";
+	//	else if (token == IntToken) return os << "IntToken";
+	//	else if (token == CharToken) return os << "CharToken";
+	//	else if (token == RealToken) return os << "RealToken";
+	//	else if (token == StringToken) return os << "StringToken";
 	else if (token == LParenToken) return os << "LParenToken";
 	else if (token == RParenToken) return os << "RParenToken";
 	else if (token == SeparatorToken) return os << "SeperatorToken";
@@ -126,11 +127,11 @@ std::ostream& operator<<(std::ostream& os, enum Token token)
 	else if (token == ElseToken) return os << "ElseToken";
 	else if (token == SwitchToken) return os << "SwitchToken";
 	else if (token == CaseToken) return os << "CaseToken";
-	else if (token == DefaultToken) return "DefaultToken";
-	else if (token == BreakToken) return "BreakToken";
+	else if (token == DefaultToken) return os << "DefaultToken";
+	else if (token == BreakToken) return os << "BreakToken";
 	else if (token == WhileToken) return os << "WhileToken";
 	else if (token == ForToken) return os << "ForToken";
-	else if (token == DoToken) return "DoToken";
+	else if (token == DoToken) return os << "DoToken";
 	else if (token == InputIntToken) return os << "InputIntToken";
 	else if (token == InputCharToken) return os << "InputCharToken";
 	else if (token == InputRealToken) return os << "InputRealToken";
@@ -146,6 +147,7 @@ std::ostream& operator<<(std::ostream& os, enum Token token)
 	//else if (token == NegativeToken) return os << "NegativeToken"; //I don't think we clarified this
 	else if (token == AddressOfToken) return os << "AddressOfToken";
 	else if (token == ErrorToken) return os << "ErrorToken";
+	else if (token == NewLineToken) return os << "NewLineToken";
 	return os << "Error";
 }
 
@@ -153,4 +155,3 @@ std::ostream& operator<<(std::ostream& os, TokenInfo token)
 {
 	return os << "{ token: " << token.token << " lex: " << token.value.c_str() << " }";
 }
-
