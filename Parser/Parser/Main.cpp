@@ -1,5 +1,6 @@
 #include "Symbol.h" //including SymbolTable functions
 #include "Scanner.h" //including Scanner functions
+#include "Parser.h"
 
 
 #include <vector>
@@ -13,37 +14,63 @@
 #include <iomanip>
 #include <algorithm>
 
-//using namespace std;
 
 
-//just testing things at this point
+//function to copy token vector-probably won't need this, we'll keep it for now//
+void duplicator(vector<Scanner::TOKENS>& scanner_tokens, vector<Parser::TOKENS>& parser_tokens)
+{
+	for (int i = 0; i < scanner_tokens.size(); i++)
+	{
+		Parser::TOKENS new_entry;
+		new_entry.token_name = scanner_tokens.at(i).token_name;
+		parser_tokens.push_back(new_entry);
+
+	}
+}
+//
+
+
+
+
+//INT MAIN//
 int main()
 {
 
-	Scanner input_code;
+	Scanner scanner;
 	Symbol symbols;
+	Parser parser;
+	
 
 	vector<Symbol::TABLE> symbol_table;
 
 	vector<char> working_code;               
-	vector<Scanner::TOKENS> tokens;                 
+	vector<Scanner::TOKENS> tokens;
+	//vector<Parser::TOKENS> parser_tokens;
+	scanner.load_code(working_code, tokens);
+	
+	//duplicator(scanner_tokens, parser_tokens);  
+	
 
-	input_code.load_code(working_code, tokens);
+	//for testing
+	//cout << "\nscanner size: "<<scanner_tokens.size()<<"\n";
+	//cout << "\nparser size: " << parser_tokens.size() << "\n";
 	
-	cout << "\n\n\n"<<tokens.at(2).token_name<<"\n\n"; //testing to see if we can reach the tokens
+	
+
+	
+	parser.match(tokens);
+	
+	
+	
 
 
+
 	
 	
 	
 	
 	
-	//testing
 	
-	//symbols.add_symbol(symbol_table);
-	
-	
-	//symbols.print_scope(symbol_table);
 	
 
 

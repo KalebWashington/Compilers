@@ -1,4 +1,4 @@
-/*
+
 
 
 #ifndef PARSER_H_INCLUDED
@@ -38,7 +38,7 @@ public:
 
 
 	//PROTOTYPES//
-	void match(vector<TOKENS>& tokens);
+	void match(vector<Scanner::TOKENS>& tokens);
 
 	void in(vector<TOKENS>& tokens);
 
@@ -48,4 +48,3 @@ public:
 #endif
 
 
-*/
