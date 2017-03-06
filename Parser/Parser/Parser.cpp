@@ -347,3 +347,29 @@ bool Parser::intDecToken()
 	return false;
 }
 
+//Match---------------------------------------//
+bool Parser::Match(enum Token t)
+{
+	if (currentToken.token == t)
+	{
+		getNextToken();
+		return true;
+	}
+	return false;
+
+}
+//Match---------------------------------------//
+
+
+
+//GetNextToken-------------------------------//
+TokenInfo Parser::getNextToken()
+{
+	if (s.HaveToken())
+	{
+		currentToken = s.build_tokens;
+	}
+}
+//GetNextToken-------------------------------//
+
+

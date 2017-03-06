@@ -21,6 +21,8 @@ public:
 		string token_name;                                                                //string to hold the name of the generated token
 	};
 
+	//TokenInfo currentToken;
+
 	//PROTOTYPES//
 	void print_tokens(vector<TOKENS>& tokens);                                             //function to print tokens generated. this will more than likely be removed as it was used for testing.
 
@@ -32,9 +34,10 @@ public:
 
 	void insert_symbol_table(vector<TOKENS>& tokens);                                      //insert into symbol table function
 	
-	
 	void initial();                                                                       //function that will call the build function, may be removed in the final compiler build
 																						  //----------------------------------------//
+	//bool HaveToken(vector<TOKENS>& tokens);
+	
 
 
 };

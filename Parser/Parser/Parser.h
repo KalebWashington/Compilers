@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "Scanner.h"
+#include "tokens.h"
 
 using namespace std;
 
@@ -39,6 +40,8 @@ public:
 	{
 		char values;
 	};
+
+	bool Match(enum Token t);
 
 	//All first of functions-------------------------------------------------//
 	bool lBlockToken();

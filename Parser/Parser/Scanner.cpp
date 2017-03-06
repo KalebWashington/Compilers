@@ -19,7 +19,11 @@ struct TOKENS
 	string token_name;
 };
 
-
+/*bool Scanner::HaveToken(vector<TOKENS>& tokens)
+{
+	//return current token
+}
+*/
 
 //VODE VECTOR DELETE FUNCTION//
 void Scanner::elements_delete(vector<char>code, vector<TOKENS>& tokens, int counter)           //accepting code and tokens vectors along with the count of how many characters composed the token
