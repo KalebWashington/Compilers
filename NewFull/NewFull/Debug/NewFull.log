@@ -1,0 +1,18 @@
+﻿  Scanner.cpp
+c:\users\jbvasseur\desktop\newfull\newfull\scanner.cpp(438): warning C4018: '>': signed/unsigned mismatch
+c:\users\jbvasseur\desktop\newfull\newfull\scanner.cpp(445): warning C4018: '<': signed/unsigned mismatch
+c:\users\jbvasseur\desktop\newfull\newfull\scanner.cpp(1312): warning C4018: '<': signed/unsigned mismatch
+c:\users\jbvasseur\desktop\newfull\newfull\scanner.cpp(1334): warning C4018: '<': signed/unsigned mismatch
+  Parser.cpp
+  Main.cpp
+c:\users\jbvasseur\desktop\newfull\newfull\main.cpp(49): error C2065: 'Parser': undeclared identifier
+c:\users\jbvasseur\desktop\newfull\newfull\main.cpp(49): error C2146: syntax error: missing ';' before identifier 'p'
+c:\users\jbvasseur\desktop\newfull\newfull\main.cpp(49): error C3861: 'p': identifier not found
+c:\users\jbvasseur\desktop\newfull\newfull\main.cpp(50): error C2065: 'p': undeclared identifier
+c:\users\jbvasseur\desktop\newfull\newfull\main.cpp(50): error C2228: left of '.testOutput' must have class/struct/union
+  c:\users\jbvasseur\desktop\newfull\newfull\main.cpp(50): note: type is 'unknown-type'
+c:\users\jbvasseur\desktop\newfull\newfull\main.cpp(51): error C2065: 'p': undeclared identifier
+c:\users\jbvasseur\desktop\newfull\newfull\main.cpp(51): error C2228: left of '.scannerRun' must have class/struct/union
+  c:\users\jbvasseur\desktop\newfull\newfull\main.cpp(51): note: type is 'unknown-type'
+  Generating Code...
+c:\users\jbvasseur\desktop\newfull\newfull\scanner.cpp(1299): warning C4715: 'Scanner::build_tokens': not all control paths return a value
