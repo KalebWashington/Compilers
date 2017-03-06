@@ -1,0 +1,71 @@
+/@
+J. Robillard, C. Suggs, A. Thomas, J. Vasseur, K. Washington
+@/
+
+
+PLAY #L##R#NFL_CHAN CHAINS
+%--|
+ 
+  CLEATS grade ^ invalid_grade  |P
+@Start of the While
+  CHL %--|
+    PUNT [Enter grade: ]|P
+    PR grade |P
+    PUNT[You entered: ]  grade  [[\M]] |P
+
+
+  |--% REV #L# grade =* [invalid_grade]#R#|P  
+     
+@Switch, Check Grade
+   MOTION#L#grade#R# %--|
+      SUB A
+         PUNT[Excellent!] [[\M]] |P
+         ROMO|P
+      SUB B
+      SUB C
+         PUNT [Well done] [[\M]] |P
+         ROMO|P
+      SUB D
+         PUNT [You passed] [[\M]] |P
+         ROMO|P
+      SUB F
+         PUNT [Better try again] [[\M]] |P
+         ROMO|P
+      BANDWAGON
+        PUNT [Invalid Grade] [[\M]] |P
+|--%
+  PC #L# grade <> [a] /B/ grade <> [b] /B/ grade <> [c] /B/ grade <>[d] *N grade =* [f] #R# %--|    
+      PUNT grade  |P
+      PUNT [You Passed] |P
+           |--%  
+           AUD
+           %--| 
+                      getData#L##R# |P
+          |--%
+
+
+
+
+PLAY BRWNS getData#L##R#%--|
+/@
+Handle the Bool
+@/
+PC #L#^G -- PLAY someFuncThatReturnsBool#L# #R# #R#
+
+
+COIN PLAY someFuncThatReturnsBool#L# #R#
+CHAINS var1 -- 3 ^ var2 -- 5 ^ var3 ^ var4 |P
+var3 -- var1 TD var 2 |P
+var4 -- var3 _^_ var1 |P
+PC #L# var3 >G var1 #R# 
+%--|
+
+
+|--%
+COIN retVal -- ^NG |P
+CHAINS myArray]2[ |P
+PASS retVal |P
+
+
+|--%
+|--%
