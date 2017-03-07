@@ -1,0 +1,21 @@
+﻿  Main.cpp
+c:\users\alan\google drive\mckendree\classes\spring 2017\compilers\compilers_works_2_tokens\compilertests\Parser.h(67): warning C4018: '<': signed/unsigned mismatch
+  parser.cpp
+c:\users\alan\google drive\mckendree\classes\spring 2017\compilers\compilers_works_2_tokens\compilertests\Parser.h(67): warning C4018: '<': signed/unsigned mismatch
+  scanner.cpp
+c:\users\alan\google drive\mckendree\classes\spring 2017\compilers\compilers_works_2_tokens\compilertests\Parser.h(67): warning C4018: '<': signed/unsigned mismatch
+scanner.cpp(507): warning C4018: '>': signed/unsigned mismatch
+scanner.cpp(514): warning C4018: '<': signed/unsigned mismatch
+scanner.cpp(1780): warning C4018: '<=': signed/unsigned mismatch
+scanner.cpp(1884): warning C4018: '<': signed/unsigned mismatch
+  symboltable.cpp
+c:\users\alan\google drive\mckendree\classes\spring 2017\compilers\compilers_works_2_tokens\compilertests\parser.h(67): warning C4018: '<': signed/unsigned mismatch
+symboltable.cpp(254): warning C4018: '<': signed/unsigned mismatch
+symboltable.cpp(452): warning C4018: '<': signed/unsigned mismatch
+symboltable.cpp(537): warning C4018: '<': signed/unsigned mismatch
+symboltable.cpp(584): warning C4018: '<': signed/unsigned mismatch
+  Generating code
+c:\users\alan\google drive\mckendree\classes\spring 2017\compilers\compilers_works_2_tokens\compilertests\scanner.cpp(1879): warning C4715: 'Scanner::build_tokens': not all control paths return a value
+  All 551 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  CompilerTests.vcxproj -> C:\Users\Alan\Google Drive\McKendree\Classes\Spring 2017\Compilers\Compilers_Works_2_tokens\Release\CompilerTests.exe
